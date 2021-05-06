@@ -1,5 +1,7 @@
 package com.netflixclone.contentservice.service;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -34,8 +36,17 @@ public class ContentService {
             return response.toString();
         } else {
             System.out.println("GET NOT WORKED");
-            return "";
+            return EmptyJson();
         }
+    }
+
+    private String EmptyJson() {
+        JSONObject empty = new JSONObject();
+        empty.put("page", 1);
+        empty.put("results", new JSONArray());
+        empty.put("total_pages", 0);
+        empty.put("total_results", 0);
+        return empty.toString();
     }
 
     public String FetchTrending() throws IOException {
