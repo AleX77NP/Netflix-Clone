@@ -25,9 +25,13 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     signupDate: {
-        type:Date,
+        type: Date,
         default: Date.now(),
         required: true
+    },
+    profilePicture: {
+        type: String,
+        default: ''
     },
     recents: {
         type: [Object],

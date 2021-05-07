@@ -19,7 +19,7 @@ function sendConfirmationMail(email, token) {
         html: `
             <a href='${CLIENT_URL}/confirm/${token}'>Click here to confirm email</a>
             <br />
-            <p>Click on the link to activate your account.</p>
+            <p>Follow the link to activate your account.</p>
         `
     }
 
