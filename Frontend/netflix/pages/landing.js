@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import styles from '../styles/Landing.module.css'
+import Separator from '../components/Separator/Separator'
 
 const Landing = () => {
     return (
@@ -23,6 +24,7 @@ const Landing = () => {
                     </div>
                 </div>
             </header>
+            <Separator />
         </div>
     )
 }

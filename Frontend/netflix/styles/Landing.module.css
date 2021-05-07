@@ -126,6 +126,9 @@
     cursor: pointer;
     border: none;
 }
+.btnstart:hover {
+    background-color: #F70612;
+}
 
 .paragraph {
     color: #fff;
