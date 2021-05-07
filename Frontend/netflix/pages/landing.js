@@ -2,6 +2,8 @@ import Head from 'next/head'
 import Link from 'next/link'
 import styles from '../styles/Landing.module.css'
 import Separator from '../components/Separator/Separator'
+import { stories } from '../data/stories'
+import StoryCard from '../components/StoryCard/StoryCard'
 
 const Landing = () => {
     return (
@@ -25,6 +27,16 @@ const Landing = () => {
                 </div>
             </header>
             <Separator />
+            <div>
+                {
+                    stories.map((story) => (
+                        <div key={story.title}>
+                            <StoryCard reverse={story.reverse} title={story.title} text={story.text} image={story.image} />
+                            <Separator />
+                        </div>
+                    ))
+                }
+            </div>
         </div>
     )
 }
