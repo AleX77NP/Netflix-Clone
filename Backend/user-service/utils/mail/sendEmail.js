@@ -7,7 +7,7 @@ function sendConfirmationMail(email, token) {
         service: 'gmail',
         auth: {
             user: 'milanovicaleX77@gmail.com',
-            pass : '' //password here
+            pass : 'acoaco12' //password here
         }
     });
 
