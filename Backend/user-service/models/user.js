@@ -29,9 +29,9 @@ const userSchema = new mongoose.Schema({
         default: Date.now(),
         required: true
     },
-    profilePicture: {
-        type: String,
-        default: ''
+    profiles: {
+        type: [Object],
+        default: []
     },
     recents: {
         type: [Object],

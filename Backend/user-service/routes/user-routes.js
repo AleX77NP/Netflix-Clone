@@ -5,13 +5,13 @@ const sendConfirmationMail = require('../utils/mail/sendEmail')
 
 async function routes (fastify, options) {
     fastify.post('/api/users/signup', async (request, reply) => {
-      let { name, surname, email, username, password, profilePicture } = request.body;
+      let { name, surname, email, username, password, profiles } = request.body;
       try {
         const salt = await bcrypt.genSalt(10)
         password = await bcrypt.hash(password, salt)
   
         try {
-            let user = new User({name, surname, email, username, password, profilePicture})
+            let user = new User({name, surname, email, username, password, profiles})
             await user.save()
             let token = generateToken(user.id)
             sendConfirmationMail(email, token)
