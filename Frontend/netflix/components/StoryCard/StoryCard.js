@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './StoryCard.module.css'
+import PropTypes from 'prop-types';
 
 const StoryCard = ({title, text, image, reverse}) => {
     return !reverse ? (
@@ -19,6 +20,13 @@ const StoryCard = ({title, text, image, reverse}) => {
             </div>
         </div>
     )
+}
+
+StoryCard.propTypes = {
+    title: PropTypes.string,
+    text: PropTypes.string,
+    image: PropTypes.string,
+    reverse: PropTypes.bool
 }
 
 export default StoryCard

@@ -5,6 +5,7 @@
     -webkit-font-smoothing: antialiased;
     background: #000;
     color: #999;
+    height: 100%;
 }
 
 .showcase {
@@ -26,7 +27,7 @@
     box-shadow: inset 50px 50px 250px #000;
 }
 
-.showcasetop {
+.showcase_top {
     position: relative;
     height: 90px;
     z-index: 2;
@@ -41,7 +42,7 @@
 }
 
 
-.linktop {
+.link_top {
     color: #fff;
     text-decoration: none;
     position: absolute;
@@ -116,7 +117,7 @@
     border-color: orange;
 }
 
-.btnstart {
+.btn_start {
     height: 70px;
     width: 33%;
     font-size: 26px;
@@ -126,7 +127,7 @@
     cursor: pointer;
     border: none;
 }
-.btnstart:hover {
+.btn_start:hover {
     background-color: #F70612;
 }
 
@@ -141,11 +142,28 @@
     margin-top: 0px;
 }
 
+.faq {
+    width: 40%;
+    margin: auto;
+    margin-bottom: 90px;
+}
+
+.faq_title {
+    color: white;
+    padding: 60px 0px;
+    font-size: 50px;
+    max-width: 90%;
+    width: 700px;
+    margin: auto;
+    font-weight: bold;
+    text-align: center;
+}
+
 @media only screen and (max-width: 945px) {
     .start {
         flex-direction: column;
     }
-    .btnstart {
+    .btn_start {
         margin-top: 20px;
     }
     .header {
@@ -154,19 +172,24 @@
     .logo {
         width: 105px;
     }
+    .faq {
+        width: 90%;
+    }
 }
 
 @media only screen and (max-width: 1445px) {
     .input {
         height: 60px;
     }
-    .btnstart {
+    .btn_start {
         height: 60px;
     }
     .header {
         font-size: 58px;
     }
-    
+    .faq {
+        width: 70%;
+    }
 }
 
 @media only screen and (max-width: 600px) {
@@ -180,12 +203,18 @@
         width: 100%;
         height: 50px;
     }
-    .btnstart {
+    .btn_start {
         width: 145px;
         font-size: 16px;
         height: 45px;
     }
     .header {
+        font-size: 28px;
+    }
+    .faq {
+        width: 90%;
+    }
+    .faq_title {
         font-size: 28px;
     }
 }
