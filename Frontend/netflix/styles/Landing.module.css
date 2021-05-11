@@ -217,4 +217,11 @@
     .faq_title {
         font-size: 28px;
     }
+    .logo {
+        width: 85px;
+        transform: translate(20%,-50%);
+    }
+    .link_top {
+        transform: translate(-20%,-50%);
+    }
 }

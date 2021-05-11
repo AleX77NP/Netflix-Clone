@@ -1,0 +1,22 @@
+.wrapper {
+    width: 85%;
+    margin: auto;
+}
+
+.button {
+    width: 100%;
+    background-color: #e50914;
+    font-size: 17px;
+    outline: none;
+    box-shadow: 0 1px 0 rgba(0,0,0, 0.45);
+    border-radius: 2px;
+    color: white;
+    border: none;
+    height: 48px;
+    margin-top: 25px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #F70612;
+}

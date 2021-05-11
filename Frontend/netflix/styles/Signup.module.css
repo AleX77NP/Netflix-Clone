@@ -1,0 +1,12 @@
+.body {
+    font-family: 'Arial', 'sans-serif';
+    -webkit-font-smoothing: antialiased;
+    height: 100%;
+    background-color: white;
+}
+
+.white_separator {
+    opacity: 0.3;
+    margin-top: 0;
+}
+

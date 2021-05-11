@@ -1,0 +1,45 @@
+.nav {
+    width: 100%;
+    position: relative;
+    height: 90px;
+}
+
+.logo {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(30%,-50%);
+}
+
+.logo_img {
+    width: 167px;
+    height: 45px;
+}
+
+.sign_out {
+    color: black;
+    text-decoration: none;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(-50%,-50%);
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.sign_out:hover {
+    text-decoration: underline;
+}
+
+@media only screen and (max-width: 600px) {
+    .logo_img {
+        height: 22.5px;
+        width: 83.5px;
+    }
+    .logo {
+        transform: translate(20%,-50%);
+    }
+    .sign_out {
+        transform: translate(-20%,-50%);
+    }
+}

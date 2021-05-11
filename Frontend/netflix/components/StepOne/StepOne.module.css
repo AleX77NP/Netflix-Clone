@@ -1,0 +1,44 @@
+.container {
+    width: 400px;
+    margin: auto;
+    margin-top: 120px;
+    max-width: 95%;
+}
+
+.image_wrapper {
+    width: 300px;
+    height: auto;
+}
+
+.step {
+    font-size: 14px;
+    margin: 0;
+    text-align: center;
+}
+
+.img {
+    width: 60%;
+    margin: auto; 
+    margin-bottom: 40px;
+}
+
+.span {
+    font-weight: bold;
+}
+
+.header {
+    font-size: 23px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.description {
+    margin: auto;
+    width: 75%;
+    justify-content: center;
+    text-align: center;
+    font-size: 17px;
+    margin-top: 12px;
+}

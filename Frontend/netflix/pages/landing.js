@@ -34,7 +34,7 @@ const Landing = () => {
             <header className={styles.showcase}>
                 <div className={styles.showcase_top}>
                     <img className={styles.logo} src="/images/logo.png" alt="logo" />
-                    <Link href="/signup"><a id={styles.signin} className={styles.link_top}>Sign In</a></Link>
+                    <Link href="/"><a id={styles.signin} className={styles.link_top}>Sign In</a></Link>
                 </div>
                 <div className={styles.content}>
                     <p className={styles.header}>Unlimited movies, TV shows, and more.</p>
@@ -42,7 +42,7 @@ const Landing = () => {
                     <p className={styles.paragraph}>Ready to watch? Enter your email to create or restart your membership.</p>
                     <div className={styles.start}>
                         <input className={styles.input} placeholder="Email address" required />
-                        <button className={styles.btn_start}>Get Started &rarr;</button>
+                        <Link href="/signup"><button className={styles.btn_start}>Get Started &rarr;</button></Link>
                     </div>
                 </div>
             </header>
