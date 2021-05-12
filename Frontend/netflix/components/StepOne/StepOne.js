@@ -3,7 +3,7 @@ import styles from './StepOne.module.css'
 import Image from 'next/image'
 import NextButton from '../NextButton/NextButton'
 import { useUserContext } from '../../context/userContext'
-import { ONE_TWO, TWO, THREE} from '../../constants/steps'
+import { ONE_TWO } from '../../constants/steps'
 
 const StepOne = () => {
 
@@ -20,7 +20,7 @@ const StepOne = () => {
                 Netflix is personalized for you. Create a password to watch Netflix on any device at any time.
                 </p>
                 <div className={styles.btn_wrapper}>
-                <NextButton onPress={() => dispatch({type: ONE_TWO})} />
+                <NextButton isDisabled={false} onPress={() => dispatch({type: ONE_TWO})} />
                 </div>
         </div>
     )

@@ -1,31 +1,18 @@
 import { useState } from 'react'
 import NextButton from '../NextButton/NextButton'
 import styles from './StepOneTwo.module.css'
+import { validatePassword } from '../../utils/validation/password'
+import { useEmail} from '../../hooks/useEmail'
+import { useUserContext } from '../../context/userContext'
+import { TWO } from '../../constants/steps'
 
 const StepOneTwo = () => {
 
-    const [email, setEmail] = useState('')
+    const {email, emailError, isValid, handleEmail} = useEmail('')
     const [password, setPassword] = useState('')
-    const [emailError, setEmailError] = useState('')
     const [pwdError, setPwdError] = useState('')
 
-    const validateEmail = (email) => {
-        var re = /\S+@\S+\.\S+/;
-        return re.test(email);
-    }
-
-    const validatePassword = (password) => {
-        return password.length >= 6
-    }
-
-    const handleEmail = (value) => {
-        if(validateEmail(value)) {
-            setEmail(value)
-            setEmailError('')
-        } else {
-            setEmailError("Email address is not valid.")
-        }
-    }
+    const {state, dispatch} = useUserContext();
 
     const handlePassword = (value) => {
         if(validatePassword(value)) {
@@ -34,6 +21,10 @@ const StepOneTwo = () => {
         } else {
             setPwdError("Password must be 6 or more characters long.")
         }
+    }
+
+    const validateInputs = () => {
+        return isValid && validatePassword(password)
     }
 
     return (
@@ -48,7 +39,7 @@ const StepOneTwo = () => {
             <input type="password" className={styles.input} placeholder="Add a password" onChange={(e) => handlePassword(e.target.value)} />
             {pwdError !== '' ? <p className={styles.error}>{pwdError}</p> : null}
             <input type="checkbox" className={styles.checkbox} /> <span>Please do not email me Netflix special offers.</span>
-            <NextButton />
+            <NextButton isDisabled={!validateInputs()} onPress={() => dispatch({type: TWO})} />
         </div>
     )
 }

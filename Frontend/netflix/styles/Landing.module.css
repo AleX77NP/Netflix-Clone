@@ -92,7 +92,6 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-bottom: 150px;
 }
 
 .header {
@@ -160,6 +159,13 @@
     text-align: center;
 }
 
+.input_error {
+    color: white;
+    margin-bottom: 150px;
+    text-align: left;
+    margin-right: 58%;
+}
+
 @media only screen and (max-width: 945px) {
     .start {
         flex-direction: column;
@@ -175,6 +181,9 @@
     }
     .faq {
         width: 90%;
+    }
+    .input_error {
+        margin-right: 0;
     }
 }
 

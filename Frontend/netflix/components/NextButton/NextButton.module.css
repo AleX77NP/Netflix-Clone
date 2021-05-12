@@ -20,3 +20,7 @@
 .button:hover {
     background-color: #F70612;
 }
+
+.button:disabled {
+    opacity: 0.7;
+}

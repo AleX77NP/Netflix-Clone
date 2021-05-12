@@ -3,6 +3,7 @@
     margin: auto;
     margin-top: 60px;
     max-width: 95%;
+    margin-bottom: 30px;
 }
 
 .span {
@@ -50,4 +51,10 @@
 .label {
     display: inline-block;
     margin-top: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 85%;
+    }
 }

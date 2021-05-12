@@ -7,10 +7,12 @@ import { faq } from '../data/faq'
 import StoryCard from '../components/StoryCard/StoryCard'
 import Accordition from '../components/Accordition/Accordition'
 import { useEffect, useState } from 'react'
+import { useEmail } from '../hooks/useEmail'
 
 const Landing = () => {
 
     const [faqs, setFaqs] = useState([])
+    const {email, emailError, isValid, handleEmail} = useEmail('')
 
     const toggleFaq = (id) => {
         let faq = faqs.find(elem => elem.id === id)
@@ -21,6 +23,7 @@ const Landing = () => {
         }
         setFaqs([...faqs])
     }
+
 
     useEffect(() => {
         setFaqs(faq)
@@ -41,9 +44,10 @@ const Landing = () => {
                     <p id={styles.pmd} className={styles.paragraph}>Watch anywhere. Cancel anytime.</p>
                     <p className={styles.paragraph}>Ready to watch? Enter your email to create or restart your membership.</p>
                     <div className={styles.start}>
-                        <input className={styles.input} placeholder="Email address" required />
-                        <Link href="/signup"><button className={styles.btn_start}>Get Started &rarr;</button></Link>
+                        <input className={styles.input} placeholder="Email address" onChange={(e) => handleEmail(e.target.value)} />
+                        <Link href={isValid ? '/signup' : '/landing'}><button className={styles.btn_start}>Get Started &rarr;</button></Link>
                     </div>
+                    {emailError !== '' ? <p className={styles.input_error}>{emailError}</p> : <p className={styles.input_error}></p> }
                 </div>
             </header>
             <Separator />
