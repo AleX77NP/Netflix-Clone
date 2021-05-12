@@ -1,10 +1,10 @@
 import React from 'react'
 import styles from './NextButton.module.css'
 
-const NextButton = () => {
+const NextButton = ({ onPress }) => {
     return (
         <div className={styles.wrapper}>
-            <button className={styles.button}>Continue</button>
+            <button onClick={onPress} className={styles.button}>Continue</button>
         </div>
     )
 }
