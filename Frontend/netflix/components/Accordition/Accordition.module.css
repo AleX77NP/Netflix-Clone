@@ -42,3 +42,12 @@
     margin-right: 25px;
     cursor: pointer;
 }
+
+@media only screen and (max-width: 600px) {
+    .question {
+        font-size: 18px;
+    }
+    .answer {
+        font-size: 18px;
+    }
+}

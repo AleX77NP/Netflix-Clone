@@ -5,13 +5,13 @@ const sendConfirmationMail = require('../utils/mail/sendEmail')
 
 async function routes (fastify, options) {
     fastify.post('/api/users/signup', async (request, reply) => {
-      let { name, surname, email, username, password, profiles } = request.body;
+      let { name, surname, email,password, profiles } = request.body;
       try {
         const salt = await bcrypt.genSalt(10)
         password = await bcrypt.hash(password, salt)
   
         try {
-            let user = new User({name, surname, email, username, password, profiles})
+            let user = new User({name, surname, email, password, profiles})
             await user.save()
             let token = generateToken(user.id)
             sendConfirmationMail(email, token)
@@ -27,9 +27,9 @@ async function routes (fastify, options) {
     })
 
     fastify.post('/api/users/login', async(request, reply) => {
-        let {username, password} = request.body;
+        let {email, password} = request.body;
         try {
-            let user = await User.findOne({ $or: [ {email: username}, {username: username }]})
+            let user = await User.findOne({ email })
             if (!user) {
                 reply.status(404).send({ message: 'User does not exist.'})
             }
