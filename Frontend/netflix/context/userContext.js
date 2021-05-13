@@ -1,15 +1,17 @@
 import { createContext, useContext, useReducer} from 'react'
-import { stepReducer } from '../reducers/userReducer'
+import { userReducer } from '../reducers/userReducer'
 
 const UserContext = createContext();
 
 const initialStepState = {
-    step: 0
+    step: 0,
+    email: '',
+    plan: 1
 }
 
 export function AppWrapper({children}) {
 
-    const [state, dispatch] = useReducer(stepReducer, initialStepState)
+    const [state, dispatch] = useReducer(userReducer, initialStepState)
     const value = {state, dispatch}
 
     return (

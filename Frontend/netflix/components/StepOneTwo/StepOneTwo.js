@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import NextButton from '../NextButton/NextButton'
 import styles from './StepOneTwo.module.css'
 import { validatePassword } from '../../utils/validation/password'
@@ -23,6 +23,10 @@ const StepOneTwo = () => {
         }
     }
 
+    useEffect(() => {
+        handleEmail(state.email)
+    },[])
+
     const validateInputs = () => {
         return isValid && validatePassword(password)
     }
@@ -33,13 +37,13 @@ const StepOneTwo = () => {
             <p className={styles.header}>Create a password to start your membership.</p>
             <p className={styles.info}>Just a few more steps and you're done! We hate paperwork, too.</p>
             <label className={styles.label}>Email</label>
-            <input type="email" className={styles.input} placeholder="Email" onChange={(e) => handleEmail(e.target.value)} />
+            <input type="email" className={styles.input} placeholder="Email" value={state.email} readOnly={true} />
             {emailError !== '' ? <p className={styles.error}>{emailError}</p> : null}
             <label className={styles.label}>Password</label>
             <input type="password" className={styles.input} placeholder="Add a password" onChange={(e) => handlePassword(e.target.value)} />
             {pwdError !== '' ? <p className={styles.error}>{pwdError}</p> : null}
             <input type="checkbox" className={styles.checkbox} /> <span>Please do not email me Netflix special offers.</span>
-            <NextButton isDisabled={!validateInputs()} onPress={() => dispatch({type: TWO})} />
+            <NextButton text="Continue" isDisabled={!validateInputs()} onPress={() => dispatch({type: TWO})} />
         </div>
     )
 }

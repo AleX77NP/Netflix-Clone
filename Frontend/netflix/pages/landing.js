@@ -8,11 +8,16 @@ import StoryCard from '../components/StoryCard/StoryCard'
 import Accordition from '../components/Accordition/Accordition'
 import { useEffect, useState } from 'react'
 import { useEmail } from '../hooks/useEmail'
+import { useUserContext } from '../context/userContext'
+import { SET_EMAIL } from '../constants/steps'
 
 const Landing = () => {
 
     const [faqs, setFaqs] = useState([])
     const {email, emailError, isValid, handleEmail} = useEmail('')
+    const {state, dispatch} = useUserContext();
+
+    console.log(state)
 
     const toggleFaq = (id) => {
         let faq = faqs.find(elem => elem.id === id)
@@ -45,7 +50,7 @@ const Landing = () => {
                     <p className={styles.paragraph}>Ready to watch? Enter your email to create or restart your membership.</p>
                     <div className={styles.start}>
                         <input className={styles.input} placeholder="Email address" onChange={(e) => handleEmail(e.target.value)} />
-                        <Link href={isValid ? '/signup' : '/landing'}><button className={styles.btn_start}>Get Started &rarr;</button></Link>
+                        <Link href={isValid ? '/signup' : '/landing'}><button disabled={isValid ? false : true} onClick={() => dispatch({type: SET_EMAIL, payload: email })} className={styles.btn_start}>Get Started &rarr;</button></Link>
                     </div>
                     {emailError !== '' ? <p className={styles.input_error}>{emailError}</p> : <p className={styles.input_error}></p> }
                 </div>

@@ -1,0 +1,93 @@
+.container {
+    margin: auto;
+    width: 945px;
+    margin-top: 30px;
+    max-width: 95%;
+    margin-bottom: 30px;
+}
+
+.step {
+    font-size: 14px;
+    margin: 0;
+}
+
+.step_wrapper {
+    text-align: left;
+}
+
+.span {
+    font-weight: bold;
+}
+
+.header {
+    font-size: 23px;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    max-width: 100%;
+}
+
+.check_list {
+    width: 380px;
+}
+
+.check_item {
+    text-align: left;
+    font-size: 16px;
+    margin: 0;
+}
+
+.mark {
+    margin-right: 10px;
+    color: red;
+    font-size: 24px;
+}
+
+.boxes {
+    margin:auto;
+    margin-right: 0;
+    margin-top: 50px;
+    width: 565px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.small {
+    display: inline-block;
+    margin-bottom: 10px;
+    width: 80%;
+    color: gray;
+}
+
+.btn_wrapper {
+    margin: auto;
+    width: 450px;
+    max-width: 95%;
+}
+
+@media only screen and (max-width: 800px) {
+    .boxes {
+        width: 100%;
+        margin: auto;
+        margin-top: 50px;
+    }
+    .header {
+        text-align: center;
+    }
+    .step {
+        text-align: center;
+    }
+    .check_list {
+        width: 300px;
+        margin: auto;
+    }
+
+    .small {
+        display: block;
+        width: 95%;
+        margin: auto;
+    }
+}

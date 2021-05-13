@@ -20,7 +20,7 @@ const StepOne = () => {
                 Netflix is personalized for you. Create a password to watch Netflix on any device at any time.
                 </p>
                 <div className={styles.btn_wrapper}>
-                <NextButton isDisabled={false} onPress={() => dispatch({type: ONE_TWO})} />
+                <NextButton text="Continue" isDisabled={false} onPress={() => dispatch({type: ONE_TWO})} />
                 </div>
         </div>
     )

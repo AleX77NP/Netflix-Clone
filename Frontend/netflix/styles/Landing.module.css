@@ -131,6 +131,10 @@
     background-color: #F70612;
 }
 
+.btn_start:disabled {
+    opacity: 0.7;
+}
+
 .paragraph {
     color: #fff;
     font-size: 19px;

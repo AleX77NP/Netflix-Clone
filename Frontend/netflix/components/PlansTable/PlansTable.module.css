@@ -1,0 +1,105 @@
+.table {
+    width: 945px;
+}
+
+.table_wrapper {
+    width: 100%;
+}
+
+.table tr {
+    display: inline-block;
+    padding: 5px 0;
+    border-bottom: 1px solid grey;
+}
+
+.table th {
+    font-weight: normal;
+    width: 380px;
+    text-align: left;
+}
+
+.table td {
+    width: 188.3px;
+    text-align: center;
+    padding: 20px;
+}
+
+.p {
+    width: 120px;
+    text-align: center;
+    margin: auto;
+    font-weight: bold;
+    color: gray;
+}
+
+.p_active {
+    width: 120px;
+    text-align: center;
+    margin: auto;
+    font-weight: bold;
+    color: #e50914;;
+}
+
+.p_active_check {
+    width: 120px;
+    text-align: center;
+    margin: auto;
+    font-weight: bold;
+    color: #e50914;;
+    font-size: 24px;
+}
+
+.p_check {
+    width: 120px;
+    text-align: center;
+    margin: auto;
+    font-weight: bold;
+    color: gray;
+    font-size: 24px;
+}
+
+#bottom_tr {
+    border: none;
+}
+
+@media only screen and (max-width: 800px) {
+    .table {
+        width: 100%;
+    }
+
+    .table th {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin: auto;
+        font-size: 14px;
+    }
+
+    .table td {
+        padding: 10px 0;
+        
+    }
+    .p {
+        width: 65px;
+        text-align: right;
+    }
+    .p_active {
+        width: 65px;
+    }
+    .p_check {
+        width: 65px;
+    }
+    .p_active_check {
+        width: 65px;
+    }
+
+}
+
+@media only screen and (max-width: 320px) {
+    .table td {
+        width: 98px;
+    }
+    .table th {
+        width: 95%;
+    }
+}
