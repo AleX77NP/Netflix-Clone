@@ -55,5 +55,8 @@
     .td_cell {
         width: 33.3%;
     }
+    .td_cell_active {
+        width: 33.3%;
+    }
 }
 
