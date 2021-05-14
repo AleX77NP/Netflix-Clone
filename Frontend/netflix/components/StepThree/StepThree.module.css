@@ -1,0 +1,47 @@
+.container {
+    width: 400px;
+    margin: auto;
+    max-width: 95%;
+}
+
+.img {
+    width: 50px;
+    margin: auto;
+    margin-bottom: 50px;
+    margin-top: 40px;
+    max-width: 95%;
+}
+
+.step {
+    font-size: 14px;
+    margin: 0;
+    text-align: center;
+}
+
+.span {
+    font-weight: bold;
+}
+
+.header {
+    font-size: 23px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.info {
+    width: 200px;
+    text-align: center;
+    margin: auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.bonus {
+    width: 200px;
+    margin: auto;
+    text-align: center;
+    font-weight: bold;
+    margin: 1px auto;
+}

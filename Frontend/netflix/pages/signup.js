@@ -7,6 +7,8 @@ import { useUserContext } from '../context/userContext'
 import StepOneTwo from '../components/StepOneTwo/StepOneTwo'
 import StepTwo from '../components/StepTwo/StepTwo'
 import StepTwoTwo from '../components/StepTwoTwo/StepTwoTwo'
+import StepThree from '../components/StepThree/StepThree'
+import LightFooter from '../components/LightFooter/LightFooter'
 
 const Signup = () => {
 
@@ -19,7 +21,8 @@ const Signup = () => {
             </Head>
             <WhiteNav />
             <hr className={styles.white_separator} />
-            {state.step === 0 ? <StepOne /> : state.step === 1 ? <StepOneTwo /> : state.step === 2 ? <StepTwo /> : <StepTwoTwo /> }
+            {state.step === 0 ? <StepOne /> : state.step === 1 ? <StepOneTwo /> : state.step === 2 ? <StepTwo /> : state.step === 3 ? <StepTwoTwo /> : <StepThree /> }
+            <LightFooter />
         </div>
     )
 }

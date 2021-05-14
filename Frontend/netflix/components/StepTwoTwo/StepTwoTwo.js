@@ -3,7 +3,7 @@ import PlanBox from '../PlanBox/PlanBox'
 import styles from './StepTwoTwo.module.css'
 import {plans} from '../../data/plans'
 import { useUserContext } from '../../context/userContext'
-import { SET_PLAN } from '../../constants/steps'
+import { FOUR, SET_PLAN } from '../../constants/steps'
 import PlansTable from '../PlansTable/PlansTable'
 import NextButton from '../NextButton/NextButton'
 
@@ -43,7 +43,7 @@ const StepTwoTwo = () => {
             </small>
 
             <div className={styles.btn_wrapper}>
-            <NextButton isDisabled={false} text="Continue" onPress={() => console.log('a')} />
+            <NextButton isDisabled={false} text="Continue" onPress={() => dispatch({type: FOUR})} />
             </div>
         </div>
     )
