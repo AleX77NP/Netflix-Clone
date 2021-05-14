@@ -27,7 +27,7 @@ const StepTwoTwo = () => {
             <div className={styles.boxes}>
                 {
                     plans.map((plan) => (
-                        <div key={plan.id}>
+                        <div className={styles.box_wrapper} key={plan.id}>
                             <PlanBox selected={state.plan === plan.id} plan={plan.title} onPress={() => dispatch({type: SET_PLAN, payload: plan.id})} />
                         </div>
                     ))

@@ -1,105 +1,50 @@
 .table {
-    width: 945px;
+    width: 100%;
+    border-collapse: collapse;
 }
 
-.table_wrapper {
-    width: 100%;
-}
 
 .table tr {
-    display: inline-block;
-    padding: 5px 0;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid lightgray;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
-.table th {
-    font-weight: normal;
-    width: 380px;
+
+.td_cell {
+    width: 20%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    color: gray;
+    padding: 20px 0px;
+}
+
+.th_cell {
+    width: 40%;
     text-align: left;
+    font-size: 16px;
+    padding: 20px 0px;
 }
 
-.table td {
-    width: 188.3px;
-    text-align: center;
-    padding: 20px;
-}
-
-.p {
-    width: 120px;
-    text-align: center;
-    margin: auto;
-    font-weight: bold;
-    color: gray;
-}
-
-.p_active {
-    width: 120px;
-    text-align: center;
-    margin: auto;
-    font-weight: bold;
-    color: #e50914;;
-}
-
-.p_active_check {
-    width: 120px;
-    text-align: center;
-    margin: auto;
-    font-weight: bold;
-    color: #e50914;;
-    font-size: 24px;
-}
-
-.p_check {
-    width: 120px;
-    text-align: center;
-    margin: auto;
-    font-weight: bold;
-    color: gray;
-    font-size: 24px;
-}
 
 #bottom_tr {
     border: none;
 }
 
-@media only screen and (max-width: 800px) {
-    .table {
-        width: 100%;
-    }
 
-    .table th {
-        display: block;
+@media only screen and (max-width: 600px) {
+    .th_cell {
         width: 100%;
+        display: block;
         text-align: center;
-        margin: auto;
+        padding: 5px 0px;
         font-size: 14px;
     }
-
-    .table td {
-        padding: 10px 0;
-        
-    }
-    .p {
-        width: 65px;
-        text-align: right;
-    }
-    .p_active {
-        width: 65px;
-    }
-    .p_check {
-        width: 65px;
-    }
-    .p_active_check {
-        width: 65px;
-    }
-
-}
-
-@media only screen and (max-width: 320px) {
-    .table td {
-        width: 98px;
-    }
-    .table th {
-        width: 95%;
+    .td_cell {
+        width: 33.3%;
     }
 }
+
