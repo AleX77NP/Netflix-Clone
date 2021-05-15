@@ -15,7 +15,7 @@ const StepThreeTwo = () => {
 
     return (
         <div className={styles.container}>
-            <p className={styles.step}>STEP <span className={styles.span}>2</span> OF <span className={styles.span}>3</span></p>
+            <p className={styles.step}>STEP <span className={styles.span}>3</span> OF <span className={styles.span}>3</span></p>
             <p className={styles.header}>Set up your credit or debit card.</p>
             <Image src="/images/creditcards.png" alt="payment" width={120} height={25} />
             <form>
