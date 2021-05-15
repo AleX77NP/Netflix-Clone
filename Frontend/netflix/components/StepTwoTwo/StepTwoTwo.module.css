@@ -72,6 +72,10 @@
     max-width: 95%;
 }
 
+.terms_blue {
+    color: rgb(0,113,235);
+}
+
 
 @media only screen and (max-width: 600px) {
     .header {

@@ -1,0 +1,107 @@
+.container {
+    width: 450px;
+    margin: auto;
+    margin-top: 20px;
+    max-width: 95%;
+}
+
+.step {
+    font-size: 14px;
+    margin: 0;
+}
+
+.span {
+    font-weight: bold;
+}
+
+.header {
+    font-size: 23px;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    max-width: 100%;
+}
+
+.input {
+    font-size: 16px;
+    height: 60px;
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border: 1px solid gray;
+    padding: 0px 10px;
+    outline: none;
+}
+
+.input:focus {
+    border-color: blue;
+}
+
+.plan_info {
+    width: 100%;
+    background-color: rgb(244,244,244);
+    height: 64px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+}
+
+.price {
+    margin-bottom: 0;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.plan_title {
+    margin-top: 0;
+    color: gray;
+    font-size: 16px;
+}
+
+.change_plan {
+    color: rgb(0,113,235);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.change_plan:hover {
+    text-decoration: underline;
+}
+
+.terms {
+    color: gray;
+    font-size: 13px;
+    margin-top: 30px;
+}
+
+.terms_blue {
+    color: rgb(0,113,235);
+}
+
+.checkbox {
+    font-size: 32px;
+}
+
+.agree {
+    color: gray;
+}
+
+.start {
+    width: 100%;
+    background-color: #e50914;
+    font-size: 17px;
+    outline: none;
+    box-shadow: 0 1px 0 rgba(0,0,0, 0.45);
+    border-radius: 2px;
+    color: white;
+    border: none;
+    height: 48px;
+    margin-top: 60px;
+    cursor: pointer;
+}
+
+.start:hover {
+    background-color: #F70612;
+}

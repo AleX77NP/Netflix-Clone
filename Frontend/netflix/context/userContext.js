@@ -6,6 +6,7 @@ const UserContext = createContext();
 const initialStepState = {
     step: 0,
     email: '',
+    password: '',
     plan: 1
 }
 

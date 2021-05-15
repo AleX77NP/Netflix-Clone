@@ -7,7 +7,7 @@ import { ONE_TWO } from '../../constants/steps'
 
 const StepOne = () => {
 
-    const {state, dispatch} = useUserContext();
+    const {dispatch} = useUserContext();
 
     return (
         <div className={styles.container}>

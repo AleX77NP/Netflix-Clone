@@ -1,4 +1,4 @@
-import {ONE_TWO, TWO, THREE, FOUR, SET_EMAIL, SET_PLAN} from '../constants/steps'
+import {ONE_TWO, TWO, THREE, FOUR, FIVE, SET_EMAIL, SET_PLAN} from '../constants/steps'
 
 export const userReducer = (state, action) => {
     switch(action.type) {
@@ -11,6 +11,7 @@ export const userReducer = (state, action) => {
             return {
                 ...state,
                 step: 2,
+                password: action.payload
             }
         case THREE:
             return {
@@ -21,6 +22,11 @@ export const userReducer = (state, action) => {
             return {
                 ...state,
                 step: 4
+            }
+        case FIVE:
+            return {
+                ...state,
+                step: 5
             }
         case SET_EMAIL:
             return {

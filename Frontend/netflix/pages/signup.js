@@ -9,6 +9,7 @@ import StepTwo from '../components/StepTwo/StepTwo'
 import StepTwoTwo from '../components/StepTwoTwo/StepTwoTwo'
 import StepThree from '../components/StepThree/StepThree'
 import LightFooter from '../components/LightFooter/LightFooter'
+import StepThreeTwo from '../components/StepThreeTwo/StepThreeTwo'
 
 const Signup = () => {
 
@@ -21,7 +22,7 @@ const Signup = () => {
             </Head>
             <WhiteNav />
             <hr className={styles.white_separator} />
-            {state.step === 0 ? <StepOne /> : state.step === 1 ? <StepOneTwo /> : state.step === 2 ? <StepTwo /> : state.step === 3 ? <StepTwoTwo /> : <StepThree /> }
+            {state.step === 0 ? <StepOne /> : state.step === 1 ? <StepOneTwo /> : state.step === 2 ? <StepTwo /> : state.step === 3 ? <StepTwoTwo /> : state.step === 4 ? <StepThree /> : <StepThreeTwo /> }
             <LightFooter />
         </div>
     )

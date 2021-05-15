@@ -8,7 +8,7 @@ import { TWO } from '../../constants/steps'
 
 const StepOneTwo = () => {
 
-    const {email, emailError, isValid, handleEmail} = useEmail('')
+    const {emailError, isValid, handleEmail} = useEmail('')
     const [password, setPassword] = useState('')
     const [pwdError, setPwdError] = useState('')
 
@@ -43,7 +43,7 @@ const StepOneTwo = () => {
             <input type="password" className={styles.input} placeholder="Add a password" onChange={(e) => handlePassword(e.target.value)} />
             {pwdError !== '' ? <p className={styles.error}>{pwdError}</p> : null}
             <input type="checkbox" className={styles.checkbox} /> <span>Please do not email me Netflix special offers.</span>
-            <NextButton text="Continue" isDisabled={!validateInputs()} onPress={() => dispatch({type: TWO})} />
+            <NextButton text="Continue" isDisabled={!validateInputs()} onPress={() => dispatch({type: TWO, payload: password})} />
         </div>
     )
 }

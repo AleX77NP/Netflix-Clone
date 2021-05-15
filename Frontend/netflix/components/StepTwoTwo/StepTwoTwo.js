@@ -35,7 +35,7 @@ const StepTwoTwo = () => {
             </div>
             <PlansTable />   
             <small className={styles.small}>
-            HD (720p), Full HD (1080p), Ultra HD (4K) and HDR availability subject to your internet service and device capabilities. Not all content is available in all resolutions. See our Terms of Use for more details.
+            HD (720p), Full HD (1080p), Ultra HD (4K) and HDR availability subject to your internet service and device capabilities. Not all content is available in all resolutions. See our <span className={styles.terms_blue}>Terms of Use</span> for more details.
             </small>
             <br />
             <small className={styles.small}>

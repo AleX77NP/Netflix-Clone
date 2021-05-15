@@ -1,5 +1,5 @@
 .container {
-    width: 400px;
+    width: 450px;
     margin: auto;
     max-width: 95%;
 }
@@ -44,4 +44,45 @@
     text-align: center;
     font-weight: bold;
     margin: 1px auto;
+}
+
+.payment_wrapper {
+    width: 100%;
+}
+
+.secure {
+    text-align: right;
+    margin-bottom: 0;
+}
+
+.payment_button {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+    background-color: white;
+    border: 2px solid lightgray;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.payment_info {
+    display: flex;
+    flex-direction: row;
+    justify-content: baseline;
+    align-items: center;
+    padding-left: 15px;
+}
+
+.cards {
+    padding-right: 10px;
+}
+
+.next {
+    color: lightgray;
+    font-weight: bold;
+    padding-right: 15px;
+    font-size: 24px;
 }
