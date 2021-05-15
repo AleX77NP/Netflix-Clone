@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react'
 import { useEmail } from '../hooks/useEmail'
 import { useUserContext } from '../context/userContext'
 import { SET_EMAIL } from '../constants/steps'
+import DarkFooter from '../components/DarkFooter/DarkFooter'
 
 const Landing = () => {
 
@@ -76,6 +77,8 @@ const Landing = () => {
                     ))
                 }
             </div>
+            <Separator />
+            <DarkFooter />
         </div>
     )
 }

@@ -1,19 +1,39 @@
 import React from 'react'
-import StepOne from '../components/StepOne/StepOne'
 import styles from '../styles/Signup.module.css'
 import Head from 'next/head'
 import WhiteNav from '../components/WhiteNav/WhiteNav'
 import { useUserContext } from '../context/userContext'
+import StepOne from '../components/StepOne/StepOne'
 import StepOneTwo from '../components/StepOneTwo/StepOneTwo'
 import StepTwo from '../components/StepTwo/StepTwo'
 import StepTwoTwo from '../components/StepTwoTwo/StepTwoTwo'
 import StepThree from '../components/StepThree/StepThree'
-import LightFooter from '../components/LightFooter/LightFooter'
 import StepThreeTwo from '../components/StepThreeTwo/StepThreeTwo'
+import LightFooter from '../components/LightFooter/LightFooter'
 
 const Signup = () => {
 
     const {state} = useUserContext();
+
+    const renderStep = () => {
+        switch(state.step) {
+            case 0:
+                return <StepOne />
+            case 1:
+                return <StepOneTwo />
+            case 2:
+                return <StepTwo />
+            case 3:
+                return <StepTwoTwo />
+            case 4:
+                return <StepThree />
+            case 5:
+                return <StepThreeTwo />
+            default:
+                return <StepOne />
+        }
+    }
+
 
     return (
         <div className={styles.body}>
@@ -22,7 +42,7 @@ const Signup = () => {
             </Head>
             <WhiteNav />
             <hr className={styles.white_separator} />
-            {state.step === 0 ? <StepOne /> : state.step === 1 ? <StepOneTwo /> : state.step === 2 ? <StepTwo /> : state.step === 3 ? <StepTwoTwo /> : state.step === 4 ? <StepThree /> : <StepThreeTwo /> }
+            {renderStep()}
             <LightFooter />
         </div>
     )

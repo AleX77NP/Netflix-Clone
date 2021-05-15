@@ -6,7 +6,7 @@ const WhiteNav = () => {
     return (
         <div className={styles.nav}>
             <div className={styles.logo}>
-            <img src="/images/logo.png" alt="logo" className={styles.logo_img} />
+            <Link href="/landing"><img src="/images/logo.png" alt="logo" className={styles.logo_img} /></Link>
             </div>
             <Link href="/landing"><a className={styles.sign_out}>Sign out</a></Link>
         </div>
