@@ -34,7 +34,6 @@ const Signup = () => {
         }
     }
 
-
     return (
         <div className={styles.body}>
             <Head>
