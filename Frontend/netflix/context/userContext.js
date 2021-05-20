@@ -7,7 +7,9 @@ const initialStepState = {
     step: 0,
     email: '',
     password: '',
-    plan: 1
+    plan: 1,
+    name: '',
+    surname: '',
 }
 
 export function AppWrapper({children}) {

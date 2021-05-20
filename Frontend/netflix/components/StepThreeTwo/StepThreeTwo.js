@@ -3,24 +3,40 @@ import styles from './StepThreeTwo.module.css'
 import Image from 'next/image'
 import { useUserContext } from '../../context/userContext'
 import {plans} from '../../data/plans'
+import {SET_NAME, SET_SURNAME, SIX} from '../../constants/steps'
 
 const StepThreeTwo = () => {
 
     const [plan, setPlan] = useState({})
     const {state, dispatch} = useUserContext();
 
+    const [name, setName] = useState('')
+    const [surname, setSurname] = useState('')
+
     useEffect(() => {
         setPlan(plans.find(plan => plan.id == state.plan))
     },[])
+
+
+    const onSubmitForm = (e) => {
+        e.preventDefault();
+        if (name.length >= 2 && surname.length >= 2) {
+        dispatch({type: SET_NAME, payload: name})
+        dispatch({type: SET_SURNAME, payload: surname})
+        dispatch({type: SIX})
+        } else {
+            alert("Please enter valid name and surname.")
+        }
+    }
 
     return (
         <div className={styles.container}>
             <p className={styles.step}>STEP <span className={styles.span}>3</span> OF <span className={styles.span}>3</span></p>
             <p className={styles.header}>Set up your credit or debit card.</p>
             <Image src="/images/creditcards.png" alt="payment" width={120} height={25} />
-            <form>
-            <input type="text" className={styles.input} placeholder="First Name" required />
-            <input type="text" className={styles.input} placeholder="Last Name" required />
+            <form onSubmit={onSubmitForm}>
+            <input type="text" className={styles.input} onChange={(e) => setName(e.target.value)} placeholder="First Name" required />
+            <input type="text" className={styles.input} onChange={(e) => setSurname(e.target.value)} placeholder="Last Name" required />
             <input type="text" className={styles.input} placeholder="Card Number" required />
             <input type="text" className={styles.input} placeholder="Expiration Date (MM/YY)" required />
             <input type="text" className={styles.input} placeholder="Security Code (CVV)" required />

@@ -10,6 +10,7 @@ import StepTwoTwo from '../components/StepTwoTwo/StepTwoTwo'
 import StepThree from '../components/StepThree/StepThree'
 import StepThreeTwo from '../components/StepThreeTwo/StepThreeTwo'
 import LightFooter from '../components/LightFooter/LightFooter'
+import StepThreeThree from '../components/StepThreeThree/StepThreeThree'
 
 const Signup = () => {
 
@@ -29,6 +30,8 @@ const Signup = () => {
                 return <StepThree />
             case 5:
                 return <StepThreeTwo />
+            case 6:
+                return <StepThreeThree />
             default:
                 return <StepOne />
         }
