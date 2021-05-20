@@ -105,3 +105,9 @@
 .start:hover {
     background-color: #F70612;
 }
+
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 85%;
+    }
+}

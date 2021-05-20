@@ -37,3 +37,9 @@
     display: inline-block;
     margin-top: 10px;
 }
+
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 85%;
+    }
+}
