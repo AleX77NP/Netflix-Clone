@@ -43,7 +43,7 @@ const Landing = () => {
             <header className={styles.showcase}>
                 <div className={styles.showcase_top}>
                     <img className={styles.logo} src="/images/logo.png" alt="logo" />
-                    <Link href="/"><a id={styles.signin} className={styles.link_top}>Sign In</a></Link>
+                    <Link href="/login"><a id={styles.signin} className={styles.link_top}>Sign In</a></Link>
                 </div>
                 <div className={styles.content}>
                     <p className={styles.header}>Unlimited movies, TV shows, and more.</p>

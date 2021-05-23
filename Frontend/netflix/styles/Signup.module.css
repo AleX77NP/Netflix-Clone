@@ -5,6 +5,10 @@
     background-color: white;
 }
 
+.main_region {
+    min-height: calc(100vh - 390px);
+}
+
 .white_separator {
     opacity: 0.3;
     margin-top: 0;

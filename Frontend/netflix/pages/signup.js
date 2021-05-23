@@ -44,7 +44,9 @@ const Signup = () => {
             </Head>
             <WhiteNav />
             <hr className={styles.white_separator} />
+            <main className={styles.main_region}>
             {renderStep()}
+            </main>
             <LightFooter />
         </div>
     )

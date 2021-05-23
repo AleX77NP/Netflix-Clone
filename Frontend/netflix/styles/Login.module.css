@@ -1,0 +1,136 @@
+.body {
+    font-family: 'Arial', 'sans-serif';
+    -webkit-font-smoothing: antialiased;
+    background: #000;
+    color: #999;
+    height: 100%;
+}
+
+.showcase {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    min-height: calc(100vh - 300px);
+    background: url('/images/background.jpg') no-repeat center center/cover;
+}
+
+.showcase::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.7);
+    
+}
+
+.showcase_top {
+    position: relative;
+    height: 90px;
+    z-index: 2;
+}
+
+.logo {
+    width: 170px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(30%,-50%);
+}
+
+.main {
+    color: #fff;
+    width: 450px;
+    margin: auto;
+    position: relative;
+    z-index: 2;
+    background-color: black;
+    justify-content: center;
+    padding: 40px 60px 140px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.7);
+    max-width: 95%;
+}
+
+.form {
+    width: 100%;
+}
+
+.label {
+    display: block;
+    padding: 20px 0px;
+}
+
+.input {
+    display: block;
+    width: 100%;
+    height: 50px;
+    font-size: 16px;
+    padding: 16px 20px;
+    border-radius: 2px;
+    background-color: rgb(51, 51, 51);
+    outline: none;
+    border: none;
+    color: white;
+}
+
+.input:focus {
+    border: 1px solid orange;
+}
+
+.login_btn {
+    margin-top: 60px;
+    margin-bottom: 3px;
+    width: 100%;
+    height: 48px;
+    background-color: #e50914;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    color: white;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+.help {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.checkbox {
+    font-size: 16px;
+    filter: grayscale(1);
+}
+
+.small {
+    color: lightgray;
+}
+
+.question {
+    font-size: 16px;
+    color: lightgray;
+}
+
+.signup {
+    color: white;
+    font-weight: bold;
+}
+
+.blue {
+    color: rgb(0,113,235);
+}
+
+@media only screen and (max-width: 600px) {
+    .main {
+        padding: 20px 20px 40px;
+    }
+    .logo {
+        transform: translate(15%,-50%);
+        width: 100px;
+    }
+}
