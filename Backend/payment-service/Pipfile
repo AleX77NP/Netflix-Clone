@@ -8,6 +8,9 @@ verify_ssl = true
 [packages]
 flask-sqlalchemy = "*"
 flask = "*"
+psycopg2-binary = "*"
+flask-marshmallow = "*"
+marshmallow-sqlalchemy = "*"
 
 [requires]
 python_version = "3.9"
