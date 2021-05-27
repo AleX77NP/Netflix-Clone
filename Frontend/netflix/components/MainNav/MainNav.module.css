@@ -117,8 +117,11 @@
     .logo_img {
         width: 60px;
     }
-    .search_img, .avatar, .gift_img, .reminder_img {
+    .search_img, .gift_img, .reminder_img {
         width: 15px;
+    }
+    .avatar {
+        width: 25px;
     }
 }
 
@@ -157,5 +160,14 @@
     }
     .nav_right {
         padding-right: 15px;
+    }
+    .nav_link_right {
+        margin-right: 5px;
+    }
+    .search_img, .gift_img, .reminder_img {
+        margin-right: 10px;
+    }
+    .avatar {
+        width: 20px;
     }
 }
