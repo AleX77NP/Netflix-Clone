@@ -49,4 +49,46 @@
     transition: all 0.2s;
 }
 
+.fade{
+    height: 125px;
+    position: relative;
+    top: -300px;
+    z-index: 1;
+    background-image: linear-gradient(
+      180deg,
+      transparent,
+      rgba(37, 37, 37, 0.61),
+      #111
+    );
+  }
+
+
+  @media only screen and (max-width: 919px) {
+      .container {
+          padding-left: 30px;
+      }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .container {
+        padding-left: 15px;
+        padding-bottom: 0;
+        padding-top: 120px;
+        
+    }
+    .overview {
+        font-size: 12px;
+        width: 90%;
+    }
+    .banner_btn {
+        padding: 0.5rem 1rem;
+    }
+    .fade {
+        display: none;
+    }
+
+    .wrapper {
+        height: 448px;
+    }
+}
 
