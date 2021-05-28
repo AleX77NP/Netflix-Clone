@@ -14,14 +14,14 @@ export default function Home() {
       </Head>
       <div className={styles.rows}>
       <MainNav /> 
-      <MoviesRow title="NETFLIX ORIGINALS" fetchUrl={contentRequests.fetchOriginals} isLarge={true} />
-      <MoviesRow title="Trending Now" fetchUrl={contentRequests.fetchTrending} isLarge={false} />
-      <MoviesRow title="Top Rated" fetchUrl={contentRequests.fetchTopRated} isLarge={false} />  
-      <MoviesRow title="Action Movies" fetchUrl={contentRequests.fetchActionMovies} isLarge={false} />  
-      <MoviesRow title="Comedy Movies" fetchUrl={contentRequests.fetchComedyMovies} isLarge={false} /> 
-      <MoviesRow title="Horror Movies" fetchUrl={contentRequests.fetchHorrorMovies} isLarge={false} />  
-      <MoviesRow title="Romance Movies" fetchUrl={contentRequests.fetchRomanceMovies} isLarge={false} />    
-      <MoviesRow title="Documentary Movies" fetchUrl={contentRequests.fetchDocumentaryMovies} isLarge={false} />      
+      <MoviesRow title="NETFLIX ORIGINALS" category={contentRequests.fetchOriginals} isLarge={true} />
+      <MoviesRow title="Trending Now" category={contentRequests.fetchTrending} isLarge={false} />
+      <MoviesRow title="Top Rated" category={contentRequests.fetchTopRated} isLarge={false} />  
+      <MoviesRow title="Action Movies" category={contentRequests.fetchActionMovies} isLarge={false} />  
+      <MoviesRow title="Comedy Movies" category={contentRequests.fetchComedyMovies} isLarge={false} /> 
+      <MoviesRow title="Horror Movies" category={contentRequests.fetchHorrorMovies} isLarge={false} />  
+      <MoviesRow title="Romance Movies" category={contentRequests.fetchRomanceMovies} isLarge={false} />    
+      <MoviesRow title="Documentary Movies" category={contentRequests.fetchDocumentaryMovies} isLarge={false} />      
     </div>
     </div>
   )
