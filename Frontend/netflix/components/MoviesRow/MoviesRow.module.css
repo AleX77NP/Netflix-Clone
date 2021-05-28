@@ -47,11 +47,11 @@
 }
 
 .movie_row:hover {
-    transform: scale(1.08);
+    transform: scale(1.2);
 }
 
 .movie_row_large:hover {
-    transform: scale(1.08);
+    transform: scale(1.2);
 }
 
 

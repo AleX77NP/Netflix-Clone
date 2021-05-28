@@ -5,3 +5,13 @@
   height: 100%;
   background-color: rgb(20, 20, 20)
 }
+
+.rows {
+  margin-top: -350px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .rows {
+    margin-top: -50px;
+  }
+}
