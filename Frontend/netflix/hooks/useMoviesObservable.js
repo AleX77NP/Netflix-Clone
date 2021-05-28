@@ -1,11 +1,11 @@
 import {useState, useEffect} from 'react'
 import {ajax} from 'rxjs/ajax'
-import {of} from 'rxjs'
-import { catchError, map, take } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 
 function useMoviesObservable(baseUrl, category) {
 
     const [response, setResponse] = useState(null)
+    const [bannerMovie, setBannerMovie] = useState(null)
     const [error, setError] = useState(null)
 
     useEffect(() => {
@@ -17,7 +17,10 @@ function useMoviesObservable(baseUrl, category) {
                 take(1),
             )
             subscription = movies$.subscribe({
-                next: res => setResponse(res),
+                next: res => {
+                    setResponse(res)
+                    setBannerMovie(res.results[Math.floor(Math.random() * res.results.length)])
+                },
                 error: err => setError('Something went wrong. Please try again later.')
             })
         }
@@ -28,7 +31,7 @@ function useMoviesObservable(baseUrl, category) {
         }
     },[category])
 
-    return {response, error}
+    return {response, error, bannerMovie}
 }
 
 export default useMoviesObservable;
