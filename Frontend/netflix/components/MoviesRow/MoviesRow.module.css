@@ -1,11 +1,9 @@
 .movies {
     display: flex;
     flex-direction: row;
-    overflow-x: scroll;
-    overflow-y: scroll;
-    padding: 20px;
     padding-left: 60px;
     margin-top: 0;
+    overflow: visible;
     position: relative;
     z-index: 2;
 }
@@ -16,7 +14,7 @@
     padding-left: 60px;
     margin-bottom: 5px;
     position: relative;
-    z-index: 2;
+    z-index: 1;
 }
 
 .error {
@@ -30,13 +28,7 @@
     display: none;
 }
 
-.movie_row {
-    width: 100%;
-    object-fit: contain;
-    max-height: 150px;
-    margin-right: 10px;
-    transition: transform 450ms;
-}
+
 
 .movie_row_large {
     width: 100%;
@@ -45,11 +37,6 @@
     margin-right: 10px;
     transition: transform 450ms;
 }
-
-.movie_row:hover {
-    transform: scale(1.2);
-}
-
 .movie_row_large:hover {
     transform: scale(1.2);
 }
@@ -58,9 +45,6 @@
 @media only screen and (max-width: 919px) {
     .movies {
         padding-left: 30px;
-    }
-    .movie_row {
-        max-height: 100px;
     }
     .movie_row_large {
         max-height: 300px;

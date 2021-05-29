@@ -13,7 +13,9 @@ export default function Home() {
         <meta name="description" content="Netflix Clone" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <header className={styles.nav}>
       <MainNav />
+      </header>
       <Banner />
       <div className={styles.rows}>
       <MoviesRow title="Trending Now" category={contentRequests.fetchTrending} isLarge={false} />
