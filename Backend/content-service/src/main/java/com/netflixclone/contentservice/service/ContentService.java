@@ -2,6 +2,7 @@ package com.netflixclone.contentservice.service;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -13,7 +14,8 @@ import java.net.URL;
 @Service
 public class ContentService {
 
-    final static String API_KEY = "c813a80de770f15206944313060693d8";
+    @Value("${tmdb.api_key}")
+    private String API_KEY;
     final static String TMDB_URL = "https://api.themoviedb.org/3/";
 
     private String FetchData(String url) throws IOException {

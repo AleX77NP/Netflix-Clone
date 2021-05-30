@@ -7,6 +7,7 @@ const Eureka = require('eureka-js-client').Eureka;
 const eureka = new Eureka({
   instance: {
     app: 'USER-SERVICE',
+    instanceId: 'USER-SERVICE',
     hostName: 'localhost',
     ipAddr: '127.0.0.1',
     statusPageUrl: 'http://localhost:9003',
@@ -33,6 +34,11 @@ eureka.start(function(error){
 
 
 require('dotenv').config()
+
+fastify.register(require("fastify-cors"), {
+  origin: "http://localhost:3000",
+  methods: ["POST", "GET", "DELETE", "PUT", "OPTIONS"]
+});
 
 fastify.register(require('fastify-cookie'), {
   secret: process.env.COOKIE_SECRET, // for cookies signature

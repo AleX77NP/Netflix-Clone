@@ -12,7 +12,7 @@ function useMoviesObservable(baseUrl, category) {
         let subscription;
         let disabled = false;
         if(!disabled) {
-            const movies$ = ajax(`${baseUrl}/${category}`).pipe(
+            const movies$ = ajax(`${baseUrl}/content/${category}`).pipe(
                 map(res => res.response),
                 take(1),
             )

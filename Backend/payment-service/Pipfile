@@ -11,6 +11,9 @@ flask = "*"
 psycopg2-binary = "*"
 flask-marshmallow = "*"
 marshmallow-sqlalchemy = "*"
+py-eureka-client = "*"
+python-dotenv = "*"
+flask-cors = "*"
 
 [requires]
 python_version = "3.9"

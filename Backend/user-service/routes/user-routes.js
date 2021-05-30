@@ -1,10 +1,10 @@
 const bcrypt = require('bcrypt')
 let User = require('../models/user')
-const generateToken = require('../utils/auth/jwt')
+const {generateToken, verifyToken} = require('../utils/auth/jwt')
 const sendConfirmationMail = require('../utils/mail/sendEmail')
 
 async function routes (fastify, options) {
-    fastify.post('/api/users/signup', async (request, reply) => {
+    fastify.post('/users/signup', async (request, reply) => {
       let { name, surname, email,password, profiles } = request.body;
       try {
         const salt = await bcrypt.genSalt(10)
@@ -26,7 +26,7 @@ async function routes (fastify, options) {
       }
     })
 
-    fastify.post('/api/users/login', async(request, reply) => {
+    fastify.post('/users/login', async(request, reply) => {
         let {email, password} = request.body;
         try {
             let user = await User.findOne({ email })
@@ -38,8 +38,8 @@ async function routes (fastify, options) {
                 reply.status(404).send({ message: 'Password is incorrect.'})
             }
 
-            let token = generateToken(user.id)
-            reply.status(200).setCookie('token', token, {signed: true, httpOnly: true}).send({message: 'Login success'})
+            let token = generateToken(user.email)
+            reply.status(200).setCookie('token', token, {signed: false, httpOnly: true}).send({message: 'Login success'})
 
 
         } catch(e) {
@@ -47,12 +47,29 @@ async function routes (fastify, options) {
         }
     })
 
-    fastify.get('/api/users', async (request, reply) => {
+    fastify.get('/users/me', async(request, reply) => {
+        const token = request.cookies['token']
+        
+        const emailUser = verifyToken(token)
+        if (emailUser === null) {
+            reply.status(401).send({message: 'Unauthorized request.'})
+        } else {
+            try {
+                const user = await User.findOne({ email: emailUser }, {email:1, name:1, surname:1,liked:1,disliked:1, recents:1, watchlist:1, profiles:1, confirmed:1})
+                reply.status(200).send({user})
+            } catch(e) {
+                console.log(e);
+                reply.status(500).send({message: 'Something went wrong, please try again later.'})
+            }
+        }
+    })
+
+    fastify.get('/users', async (request, reply) => {
         const users = await User.find()
         reply.send(users)
     })
 
-    fastify.delete('/api/users', async (request, reply) => {
+    fastify.delete('/users', async (request, reply) => {
         await User.remove()
         reply.send({message: 'Deleted all users.'})
     })

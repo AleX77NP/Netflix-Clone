@@ -1,0 +1,38 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+              allowedOrigins: "http://localhost:3000"
+              allowedMethods: "*"
+              allowedHeaders: "*"
+      routes:
+        - id: USER-SERVICE
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/users/**
+        - id: CONTENT-SERVICE
+          uri: lb://CONTENT-SERVICE
+          predicates:
+            - Path=/content/**
+        - id: PAYMENT-SERVICE
+          uri: lb://payment-service
+          predicates:
+            - Path=/payment/**
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost

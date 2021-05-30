@@ -1,14 +1,31 @@
 from enum import unique
 import os
 from flask import Flask, jsonify, request
+from flask.json import load
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+import py_eureka_client.eureka_client as eureka_client
+from dotenv import load_dotenv
+from pathlib import Path
+from flask_cors import CORS
+
+rest_port = 9004
+
+eureka_client.init(eureka_server="http://localhost:8761/eureka", app_name="PAYMENT-SERVICE", instance_port=rest_port)
 
 base_dir = os.path.abspath(os.path.dirname(__file__))
 
+load_dotenv()
+
+env_path = Path('.')/'.env'
+
+load_dotenv(dotenv_path=env_path)
+
 app = Flask(__name__)
 
-app.secret_key = "secret_key"
+cors = CORS(app, resources={r"*": {"origins": "http://localhost:3000"}})
+
+app.secret_key = os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://admin:admin@localhost:5432/payments'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -38,7 +55,13 @@ user_payments_schema = UserPaymentSchema(many=True)
 def index():
     return jsonify({'message': 'Payment service'})
 
-@app.route('/api/payment/register', methods=['POST'])
+@app.route('/payment', methods=['GET'])
+def payments():
+    payments = UserPayment.query.all()
+    return user_payments_schema.jsonify(payments)
+
+
+@app.route('/payment/register', methods=['POST'])
 def register():
     user = request.json['user']
     plan = request.json['plan']
@@ -51,7 +74,7 @@ def register():
     return user_payment_schema.jsonify(user_payment)
 
 
-@app.route('/api/payment/change/<user>', methods=['PUT'])
+@app.route('/payment/change/<user>', methods=['PUT'])
 def change(user):
     plan = request.json['plan']
     last_modified = request.json['last_modified']
@@ -64,7 +87,7 @@ def change(user):
 
     return user_payment_schema.jsonify(user_payment)
 
-@app.route('/api/payment/remove/<user>', methods=['DELETE'])
+@app.route('/payment/remove/<user>', methods=['DELETE'])
 def remove(user):
     user_payment = UserPayment.query.filter_by(user=user).first()
 
@@ -74,4 +97,4 @@ def remove(user):
     return jsonify({'message': 'User payment account deleted.'})
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(host='0.0.0.0',debug=True, port=9004)

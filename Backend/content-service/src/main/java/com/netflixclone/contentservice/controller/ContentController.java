@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/api/content")
+@RequestMapping("/content")
 @CrossOrigin(origins = "http://localhost:3000")
 public class ContentController {
 

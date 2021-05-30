@@ -11,6 +11,7 @@
     "eureka-js-client": "^4.5.0",
     "fastify": "^3.15.1",
     "fastify-cookie": "^5.3.0",
+    "fastify-cors": "^6.0.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.7",
     "nodemailer": "^6.6.0"
