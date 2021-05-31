@@ -2,7 +2,7 @@ import pika, json
 
 from app import UserPayment, db
 
-params = pika.URLParameters('amqp://localhost')
+params = pika.URLParameters('amqps://vhzhtqms:af0dmyWyRghGf5qUgj3nUtTFqxWut2ZA@kangaroo.rmq.cloudamqp.com/vhzhtqms')
 
 connection = pika.BlockingConnection(params)
 

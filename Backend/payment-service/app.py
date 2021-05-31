@@ -28,7 +28,7 @@ app = Flask(__name__)
 cors = CORS(app, resources={r"*": {"origins": "http://localhost:3000"}})
 
 app.secret_key = os.getenv('SECRET_KEY')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://admin:admin@localhost:5432/payments'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://admin:admin@postgres:5432/payments'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -78,6 +78,13 @@ def payments():
     payments = UserPayment.query.all()
     return user_payments_schema.jsonify(payments)
 
+@app.route('/payment/user', methods=['GET'])
+@auth_middleware
+def payment(user):
+    print(user)
+    user_payment = UserPayment.query.filter_by(user=user).first()
+
+    return jsonify(user_payment.plan)
 
 @app.route('/payment/change', methods=['PUT'])
 @auth_middleware

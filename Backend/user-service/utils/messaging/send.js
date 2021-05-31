@@ -1,7 +1,7 @@
 var ampq = require('amqplib/callback_api');
 
 function send(info) {
-        ampq.connect('amqp://localhost', (error0, connection) => {
+        ampq.connect('amqps://vhzhtqms:af0dmyWyRghGf5qUgj3nUtTFqxWut2ZA@kangaroo.rmq.cloudamqp.com/vhzhtqms', (error0, connection) => {
         if(error0) {
             throw error0;
         }

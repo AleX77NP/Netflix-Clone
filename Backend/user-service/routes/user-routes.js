@@ -47,7 +47,7 @@ async function routes (fastify, options) {
             }
 
             let token = generateToken(user.email)
-            reply.status(200).setCookie('token', token, {signed: false, httpOnly: true}).send({message: 'Login success'})
+            reply.status(200).setCookie('token', token, {signed: false, httpOnly: true}).send({message: 'Login success', token})
 
 
         } catch(e) {

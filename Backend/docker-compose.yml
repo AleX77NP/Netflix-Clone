@@ -20,12 +20,46 @@ services:
             - 27017:27017
         volumes: 
             - mongodb:/data/db
-    rabbitmq:
-        image: rabbitmq:3-management-alpine
-        container_name: rabbitmq
+    
+    payment-service:
+        depends_on: 
+            - postgres
+        image: payment-service
+        container_name: payment-service
         ports: 
-            - 5672:5672
-            - 15672:15672
+            - 9004:9004
+        environment: 
+            - SECRET_KEY=b'O8Y[ \x9c\xb8\xb9\xfc\xd7\xb3J\x0e{\xe4\x03c\xee\xe8\xe7\xd5\xc45\xb6'
+            - JWT_SECRET=dkdshkds7sdty42hv20wdinsdg742ub2bjjb39dy9svd6tsd862bj4320sdihds7trwveibw0dy9euv3wbj499wiwd8wdbwdubdbuw993bu
+        build: 
+            context: ./payment-service
+            dockerfile: Dockerfile
+        command: 'python app.py'
+        restart: always
+
+    consumer:
+        depends_on: 
+            - postgres
+        container_name: consumer
+        build: 
+            context: ./payment-service
+            dockerfile: Dockerfile
+        command: 'python -u consumer.py'
+    
+    user-service:
+        depends_on: 
+            - mongo
+        image: user-service
+        container_name: user-service
+        ports: 
+            - 9003:9003
+        environment: 
+            - ACCESS_TOKEN_SECRET=dkdshkds7sdty42hv20wdinsdg742ub2bjjb39dy9svd6tsd862bj4320sdihds7trwveibw0dy9euv3wbj499wiwd8wdbwdubdbuw993bu
+            - COOKIE_SECRET=c1112oo3939393kkk303030i330303003eee039339
+        build: 
+            context: ./user-service
+            dockerfile: Dockerfile
+        restart: always
 
 volumes: 
     mongodb:

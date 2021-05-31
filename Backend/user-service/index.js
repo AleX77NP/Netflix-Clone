@@ -2,6 +2,8 @@
 const fastify = require('fastify')({ logger: true })
 const mongoose = require('mongoose')
 
+const PORT = 9003;
+
 const Eureka = require('eureka-js-client').Eureka;
 
 const eureka = new Eureka({
@@ -45,7 +47,7 @@ fastify.register(require('fastify-cookie'), {
   parseOptions: {}     // options for parsing cookies
 })
 
-mongoose.connect('mongodb://localhost/netflix', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://mongo/netflix', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
 .then(() => {
   console.log('DB Connection...')
 }).catch((err) => {
@@ -60,12 +62,10 @@ fastify.register(require('./routes/user-routes'))
 
 
 // Run the server
-const start = async () => {
-  try {
-    await fastify.listen(9003)
-  } catch (err) {
+fastify.listen(PORT, '0.0.0.0', function (err, address) {
+  if (err) {
     fastify.log.error(err)
     process.exit(1)
   }
-}
-start()
+  fastify.log.info(`server listening on ${address}`)
+})
