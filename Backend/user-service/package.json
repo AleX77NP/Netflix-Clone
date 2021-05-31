@@ -6,6 +6,7 @@
   "author": "Aleksandar Milanovic",
   "license": "MIT",
   "dependencies": {
+    "amqplib": "^0.8.0",
     "bcrypt": "^5.0.1",
     "dotenv": "^9.0.0",
     "eureka-js-client": "^4.5.0",

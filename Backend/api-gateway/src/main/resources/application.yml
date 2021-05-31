@@ -11,22 +11,52 @@ spring:
       globalcors:
         corsConfigurations:
           '[/**]':
-              allowedOrigins: "http://localhost:3000"
-              allowedMethods: "*"
-              allowedHeaders: "*"
+            allowedOrigins: "http://localhost:3000"
+            allowedMethods: "*"
+            allowedHeaders: "*"
       routes:
         - id: USER-SERVICE
           uri: lb://USER-SERVICE
           predicates:
             - Path=/users/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: USER-SERVICE
+                fallbackuri: forward:/userServiceFallBack
         - id: CONTENT-SERVICE
           uri: lb://CONTENT-SERVICE
           predicates:
             - Path=/content/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: CONTENT-SERVICE
+                fallbackuri: forward:/contentServiceFallBack
         - id: PAYMENT-SERVICE
           uri: lb://payment-service
           predicates:
             - Path=/payment/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: PAYMENT-SERVICE
+                fallbackuri: forward:/paymentService
+
+hystrix:
+  command:
+    fallbackcmd:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 4000
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
 
 eureka:
   client:

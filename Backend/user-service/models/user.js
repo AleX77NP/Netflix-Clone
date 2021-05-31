@@ -28,11 +28,6 @@ const userSchema = new mongoose.Schema({
         type: [Object],
         default: []
     },
-    recents: {
-        type: [Object],
-        default: [],
-        required: true
-    },
     liked: {
         type: [Number],
         default: [],

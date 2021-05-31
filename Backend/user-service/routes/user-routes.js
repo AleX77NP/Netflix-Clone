@@ -2,10 +2,12 @@ const bcrypt = require('bcrypt')
 let User = require('../models/user')
 const {generateToken, verifyToken} = require('../utils/auth/jwt')
 const sendConfirmationMail = require('../utils/mail/sendEmail')
+const send = require('../utils/messaging/send')
+const currentDate = require('../utils/date/date')
 
 async function routes (fastify, options) {
     fastify.post('/users/signup', async (request, reply) => {
-      let { name, surname, email,password, profiles } = request.body;
+      let { name, surname, email,password, profiles, plan } = request.body;
       try {
         const salt = await bcrypt.genSalt(10)
         password = await bcrypt.hash(password, salt)
@@ -13,6 +15,12 @@ async function routes (fastify, options) {
         try {
             let user = new User({name, surname, email, password, profiles})
             await user.save()
+            let paymentInfo = {
+                'user': email,
+                'plan': plan,
+                'last_modified': currentDate()
+            };
+            send(paymentInfo)
             let token = generateToken(user.id)
             sendConfirmationMail(email, token)
             reply.status(201).send({message: 'Please confirm your account activation via email.'})
@@ -55,7 +63,7 @@ async function routes (fastify, options) {
             reply.status(401).send({message: 'Unauthorized request.'})
         } else {
             try {
-                const user = await User.findOne({ email: emailUser }, {email:1, name:1, surname:1,liked:1,disliked:1, recents:1, watchlist:1, profiles:1, confirmed:1})
+                const user = await User.findOne({ email: emailUser }, {email:1, name:1, surname:1,liked:1,disliked:1, watchlist:1, profiles:1, confirmed:1})
                 reply.status(200).send({user})
             } catch(e) {
                 console.log(e);

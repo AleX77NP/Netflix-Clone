@@ -1,13 +1,15 @@
-from enum import unique
 import os
 from flask import Flask, jsonify, request
 from flask.json import load
+from flask.wrappers import Response
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 import py_eureka_client.eureka_client as eureka_client
 from dotenv import load_dotenv
 from pathlib import Path
 from flask_cors import CORS
+from functools import wraps
+import jwt
 
 rest_port = 9004
 
@@ -50,6 +52,22 @@ class UserPaymentSchema(ma.Schema):
 user_payment_schema = UserPaymentSchema()
 user_payments_schema = UserPaymentSchema(many=True)
 
+def auth_middleware(func):
+    @wraps(func)
+    def decorated_function(*args, **kwargs):
+        res = '{"message": "Unauthorized request"}'
+        token = request.json['token']
+
+        try:
+            data = jwt.decode(token, os.getenv('JWT_SECRET'),algorithms=["HS256"])
+            user = data['user']
+            return func(*args, **kwargs, user=user)
+        except:
+            return Response(response=res, mimetype='application/json', status=401)
+
+    return decorated_function
+
+
 
 @app.route('/', methods=['GET'])
 def index():
@@ -61,20 +79,8 @@ def payments():
     return user_payments_schema.jsonify(payments)
 
 
-@app.route('/payment/register', methods=['POST'])
-def register():
-    user = request.json['user']
-    plan = request.json['plan']
-    last_modified = request.json['last_modified']
-
-    user_payment = UserPayment(user=user, plan=plan, last_modified=last_modified)
-    db.session.add(user_payment)
-    db.session.commit()
-
-    return user_payment_schema.jsonify(user_payment)
-
-
-@app.route('/payment/change/<user>', methods=['PUT'])
+@app.route('/payment/change', methods=['PUT'])
+@auth_middleware
 def change(user):
     plan = request.json['plan']
     last_modified = request.json['last_modified']
@@ -87,7 +93,8 @@ def change(user):
 
     return user_payment_schema.jsonify(user_payment)
 
-@app.route('/payment/remove/<user>', methods=['DELETE'])
+@app.route('/payment/remove', methods=['DELETE'])
+@auth_middleware
 def remove(user):
     user_payment = UserPayment.query.filter_by(user=user).first()
 
