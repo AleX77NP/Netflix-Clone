@@ -10,9 +10,8 @@ const eureka = new Eureka({
   instance: {
     app: 'USER-SERVICE',
     instanceId: 'USER-SERVICE',
-    hostName: 'localhost',
-    ipAddr: '127.0.0.1',
-    statusPageUrl: 'http://localhost:9003',
+    hostName: 'eureka-spring',
+    ipAddr: '0.0.0.0',
     port: {
       '$': 9003,
       '@enabled': 'true',
@@ -24,7 +23,7 @@ const eureka = new Eureka({
     }
   },
   eureka: {
-    host: 'localhost',
+    host: 'eureka-spring',
     port: 8761,
     servicePath: '/eureka/apps/'
   }

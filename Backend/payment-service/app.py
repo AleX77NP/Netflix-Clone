@@ -13,7 +13,7 @@ import jwt
 
 rest_port = 9004
 
-eureka_client.init(eureka_server="http://localhost:8761/eureka", app_name="PAYMENT-SERVICE", instance_port=rest_port)
+eureka_client.init(eureka_server="http://eureka-spring:8761/eureka", app_name="PAYMENT-SERVICE", instance_port=rest_port)
 
 base_dir = os.path.abspath(os.path.dirname(__file__))
 
@@ -111,4 +111,5 @@ def remove(user):
     return jsonify({'message': 'User payment account deleted.'})
 
 if __name__ == '__main__':
+    db.create_all()
     app.run(host='0.0.0.0',debug=True, port=9004)

@@ -11,12 +11,12 @@ spring:
       globalcors:
         corsConfigurations:
           '[/**]':
-            allowedOrigins: "http://localhost:3000"
+            allowedOrigins: "*"
             allowedMethods: "*"
             allowedHeaders: "*"
       routes:
         - id: USER-SERVICE
-          uri: lb://USER-SERVICE
+          uri: http://user-service:9003
           predicates:
             - Path=/users/**
           filters:
@@ -25,7 +25,7 @@ spring:
                 name: USER-SERVICE
                 fallbackuri: forward:/userServiceFallBack
         - id: CONTENT-SERVICE
-          uri: lb://CONTENT-SERVICE
+          uri: http://content-service:9002
           predicates:
             - Path=/content/**
           filters:
@@ -34,7 +34,7 @@ spring:
                 name: CONTENT-SERVICE
                 fallbackuri: forward:/contentServiceFallBack
         - id: PAYMENT-SERVICE
-          uri: lb://payment-service
+          uri: http://payment-service:9004
           predicates:
             - Path=/payment/**
           filters:
@@ -63,6 +63,8 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://eureka-spring:8761/eureka/
+    instance:
+      preferIpAddress: true
   instance:
-    hostname: localhost
+    hostname: eureka-spring

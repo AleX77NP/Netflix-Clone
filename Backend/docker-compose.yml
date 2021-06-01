@@ -20,7 +20,58 @@ services:
             - 27017:27017
         volumes: 
             - mongodb:/data/db
+
+    eureka-service:
+        image: eureka
+        container_name: eureka-spring
+        build: 
+            context: ./service-registry
+            dockerfile: Dockerfile
+        ports: 
+            - 8761:8761
+        restart: always
+
+    api-gateway:
+        image: gateway
+        container_name: api-gateway
+        build: 
+            context: ./api-gateway
+            dockerfile: Dockerfile
+        depends_on: 
+            - eureka-service
+            - user-service
+            - content-service
+            - payment-service
+        ports: 
+            - 9001:9001
+        restart: always
     
+    hystrix-dashboard:
+        image: hystrix
+        container_name: hystrix-dashboard
+        build: 
+            context: ./hystrix-dashboard
+            dockerfile: Dockerfile
+        depends_on: 
+            - eureka-service
+        ports: 
+            - 9100:9100
+        restart: always
+    
+    content-service:
+        image: content-service
+        container_name: content-service
+        build: 
+            context: ./content-service
+            dockerfile: Dockerfile
+        depends_on: 
+            - eureka-service
+        ports: 
+            - 9002:9002
+        environment: 
+            - tmdb.api_key=c813a80de770f15206944313060693d8
+        restart: always
+
     payment-service:
         depends_on: 
             - postgres
@@ -34,6 +85,8 @@ services:
         build: 
             context: ./payment-service
             dockerfile: Dockerfile
+        depends_on: 
+            - eureka-service
         command: 'python app.py'
         restart: always
 
@@ -46,6 +99,7 @@ services:
             context: ./payment-service
             dockerfile: Dockerfile
         command: 'python -u consumer.py'
+        restart: always
     
     user-service:
         depends_on: 
@@ -60,6 +114,8 @@ services:
         build: 
             context: ./user-service
             dockerfile: Dockerfile
+        depends_on: 
+            - eureka-service
         restart: always
 
 volumes: 
