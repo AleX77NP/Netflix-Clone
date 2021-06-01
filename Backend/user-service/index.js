@@ -37,7 +37,7 @@ eureka.start(function(error){
 require('dotenv').config()
 
 fastify.register(require("fastify-cors"), {
-  origin: "http://localhost:3000",
+  origin: "*",
   methods: ["POST", "GET", "DELETE", "PUT", "OPTIONS"]
 });
 

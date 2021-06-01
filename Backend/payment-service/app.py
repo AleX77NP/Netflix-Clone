@@ -25,7 +25,7 @@ load_dotenv(dotenv_path=env_path)
 
 app = Flask(__name__)
 
-cors = CORS(app, resources={r"*": {"origins": "http://localhost:3000"}})
+cors = CORS(app, resources={r"*": {"origins": "*"}})
 
 app.secret_key = os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://admin:admin@postgres:5432/payments'
