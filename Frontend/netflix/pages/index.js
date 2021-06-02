@@ -3,6 +3,7 @@ import contentRequests from '../api/contentRequests'
 import Banner from '../components/Banner/Banner'
 import MainNav from '../components/MainNav/MainNav'
 import MoviesRow from '../components/MoviesRow/MoviesRow'
+import DarkFooter from '../components/DarkFooter/DarkFooter'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -26,6 +27,9 @@ export default function Home() {
       <MoviesRow title="Horror Movies" category={contentRequests.fetchHorrorMovies} isLarge={false} />  
       <MoviesRow title="Romance Movies" category={contentRequests.fetchRomanceMovies} isLarge={false} />    
       <MoviesRow title="Documentary Movies" category={contentRequests.fetchDocumentaryMovies} isLarge={false} />      
+    </div>
+    <div style={{width: '100%', backgroundColor: 'black'}}>
+    <DarkFooter />
     </div>
     </div>
   )

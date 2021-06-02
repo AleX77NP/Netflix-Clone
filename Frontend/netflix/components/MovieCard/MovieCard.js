@@ -1,18 +1,25 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import styles from './MovieCard.module.css'
 import PropTypes from 'prop-types';
 import {truncate} from '../../utils/strings'
+import useWindowDimensions from '../../hooks/useWindowDimensions'
 
 const baseImgUrl = "https://image.tmdb.org/t/p/original";
 
 const MovieCard = ({movie}) => {
 
     const [showDetails, setShowDetails] = useState(false)
+    const { width } = useWindowDimensions();
+
+    const cardWidth = useCallback(() => {
+        return (width/8)-24;
+    },[width])
 
     return (
         <div className={styles.card}
         onMouseEnter={() => setShowDetails(true)}
         onMouseLeave={() => setShowDetails(false)}
+        style={{width:  width > 1200 ? `${cardWidth()}px` : '120px'}}
         >
             {
                 !showDetails ? <img src={`${baseImgUrl}${movie?.backdrop_path}`}

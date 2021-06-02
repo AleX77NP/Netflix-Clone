@@ -1,9 +1,14 @@
+.movies_wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .movies {
     display: flex;
     flex-direction: row;
     padding-left: 60px;
     margin-top: 0;
-    overflow: visible;
     position: relative;
     z-index: 2;
 }
@@ -24,11 +29,16 @@
     margin-bottom: 5px;
 }
 
+.img_loading {
+    display: block;
+    margin: auto;
+    width: 100px;
+    margin-bottom: 25px;
+}
+
 .movies::-webkit-scrollbar {
     display: none;
 }
-
-
 
 .movie_row_large {
     width: 100%;
@@ -41,10 +51,16 @@
     transform: scale(1.2);
 }
 
+@media only screen and (max-width: 1200px) {
+    .movies {
+        flex-wrap: wrap;
+    }
+}
 
 @media only screen and (max-width: 919px) {
     .movies {
         padding-left: 30px;
+        flex-wrap: wrap;
     }
     .movie_row_large {
         max-height: 300px;
@@ -57,6 +73,7 @@
 @media only screen and (max-width: 600px) {
     .movies {
         padding-left: 15px;
+        flex-wrap: wrap;
     }
 
     .title {

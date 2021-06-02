@@ -1,10 +1,11 @@
 import {useState, useEffect} from 'react'
 import {ajax} from 'rxjs/ajax'
-import { map, take } from 'rxjs/operators';
+import { delay, map, take } from 'rxjs/operators';
 
 function useMoviesObservable(baseUrl, category) {
 
     const [response, setResponse] = useState(null)
+    const [loading, setLoading] = useState(true)
     const [bannerMovie, setBannerMovie] = useState(null)
     const [error, setError] = useState(null)
 
@@ -14,14 +15,20 @@ function useMoviesObservable(baseUrl, category) {
         if(!disabled) {
             const movies$ = ajax(`${baseUrl}/content/${category}`).pipe(
                 map(res => res.response),
+                delay(200),
                 take(1),
             )
             subscription = movies$.subscribe({
                 next: res => {
                     setResponse(res)
-                    setBannerMovie(res.results[Math.floor(Math.random() * res.results.length)])
+                    setBannerMovie(res.results[Math.floor(Math.random() * res.results.length)]),
+                    setLoading(false)
                 },
-                error: err => setError('Something went wrong. Please try again later.')
+                error: err => {
+                    setError('Something went wrong. Please try again later.'),
+                    setLoading(false),
+                    console.log(err)
+                }
             })
         }
 
@@ -31,7 +38,7 @@ function useMoviesObservable(baseUrl, category) {
         }
     },[category])
 
-    return {response, error, bannerMovie}
+    return {response, error, bannerMovie, loading}
 }
 
 export default useMoviesObservable;

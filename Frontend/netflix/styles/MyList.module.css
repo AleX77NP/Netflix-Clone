@@ -1,0 +1,17 @@
+.body {
+  font-family: 'Arial', 'sans-serif';
+  -webkit-font-smoothing: antialiased;
+  height: 100%;
+  background-color: rgb(20, 20, 20);
+  box-shadow: inset 0px 0px 250px #000;
+}
+
+.nav {
+    position: relative;
+    z-index: 3;
+    padding-top: 20px;
+}
+
+.main {
+    height: 100vh;
+}

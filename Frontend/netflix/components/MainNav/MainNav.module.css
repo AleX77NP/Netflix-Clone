@@ -35,7 +35,6 @@
     align-items: center;
 }
 
-
 .nav_right {
     width: 400px;
     max-width: 40%;
@@ -60,17 +59,10 @@
     display: none;
 }
 
-.nav_link_right {
-    color: lightgray;
-    font-size: 14px;
-    cursor: pointer;
-    margin-right: 25px;
-}
 
 .logo_img {
     width: 100px;
     height: auto;
-    margin-right: 25px;
     cursor: pointer;
 }
 
@@ -127,9 +119,6 @@
 }
 
 @media only screen and (max-width: 919px) {
-    .nav_link {
-        display: none;
-    }
     .nav_link_right {
         font-weight: bold;
         color:white
@@ -153,17 +142,14 @@
     .nav_left {
         justify-content: flex-start;
     }
-    .nav_link {
-        display: none;
-    }
     .nav_left {
         padding-left: 15px;
     }
     .nav_right {
         padding-right: 15px;
     }
-    .nav_link_right {
-        margin-right: 5px;
+    .nav_link {
+        margin-left: 10px;
     }
     .search_img, .gift_img, .reminder_img {
         margin-right: 10px;

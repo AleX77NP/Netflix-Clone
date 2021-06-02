@@ -1,5 +1,4 @@
 .card {
-    width: 250px;
     border-radius: 5px;
     margin: 2px;
     transition: transform 500ms;
@@ -83,11 +82,42 @@
     font-size: 10px;
 }
 
+@media only screen and (max-width: 1200px) {
+    .button {
+        padding: 3px 5px;
+    }
+    .card:hover {
+        transform: scale(1.5) translateY(-25%);
+    }
+
+    .card:first-child:hover {
+        transform: scale(1.5) translateY(-25%);
+    }
+    .card:last-child:hover {
+        transform: scale(1.5) translateY(-25%);
+    }
+}
+
+
 @media only screen and (max-width: 600px) {
     .overview {
         font-size: 8px;
     }
     .poster{
         height: 250px;
+    }
+    .card:hover {
+        transform: scale(1.2) translateY(-25%);
+    }
+
+    .card:first-child:hover {
+        transform: scale(1.2) translateY(-25%);
+    }
+    .card:last-child:hover {
+        transform: scale(1.2) translateY(-25%);
+    }
+
+    .button {
+        padding: 3px 5px;
     }
 }
