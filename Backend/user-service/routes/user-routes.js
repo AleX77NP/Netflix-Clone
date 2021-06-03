@@ -7,7 +7,7 @@ const currentDate = require('../utils/date/date')
 
 async function routes (fastify, options) {
     fastify.post('/users/signup', async (request, reply) => {
-      let { name, surname, email,password, profiles, plan } = request.body;
+      let { name, surname, email, password, profiles, plan } = request.body;
       try {
         const salt = await bcrypt.genSalt(10)
         password = await bcrypt.hash(password, salt)
@@ -21,7 +21,7 @@ async function routes (fastify, options) {
                 'last_modified': currentDate()
             };
             send(paymentInfo)
-            let token = generateToken(user.id)
+            let token = generateToken(email)
             sendConfirmationMail(email, token)
             reply.status(201).send({message: 'Please confirm your account activation via email.'})
         } catch(e) {
@@ -32,6 +32,24 @@ async function routes (fastify, options) {
       catch(e) {
         reply.status(500).send({ message: 'Something went wrong, please try again later.'})
       }
+    })
+
+    fastify.post('/users/confirm/email', async(request, reply) => {
+        let {token} = request.body;
+        const emailUser = verifyToken(token)
+        if (emailUser === null) {
+            reply.status(401).send({message: 'Unauthorized request.'})
+        } else {
+            try {
+                console.log(emailUser);
+                const user = await User.findOneAndUpdate({email: emailUser}, { $set: {confirmed: true}})
+                reply.status(200).send({ message: 'Email confirmed.'})
+            } catch(e) {
+                console.log(e)
+                reply.status(500).send({ message: 'Something went wrong, please try again later.'})
+            }
+        }
+        
     })
 
     fastify.post('/users/login', async(request, reply) => {
@@ -55,6 +73,10 @@ async function routes (fastify, options) {
         }
     })
 
+    fastify.post('/users/logout', async(request, reply) => {
+        reply.status(200).clearCookie('token', {path: '/users'}).send({ message : 'Signed out.'})
+    })
+
     fastify.get('/users/me', async(request, reply) => {
         const token = request.cookies['token']
         
@@ -72,15 +94,114 @@ async function routes (fastify, options) {
         }
     })
 
-    fastify.get('/users', async (request, reply) => {
-        const users = await User.find()
-        reply.send(users)
+    fastify.put('/users/like/add', async(request, reply) => {
+        const token = request.cookies['token']
+        
+        const emailUser = verifyToken(token)
+        if (emailUser === null) {
+            reply.status(401).send({message: 'Unauthorized request.'})
+        } else {
+            try {
+                const user = await User.findOneAndUpdate({email: emailUser}, {$push : {liked: request.body.id}})
+                reply.status(200).send({ message: 'Movie liked'})
+            }
+            catch(e) {
+                console.log(e);
+                reply.status(500).send({message: 'Something went wrong, please try again later.'})
+            }
+        }
     })
 
-    fastify.delete('/users', async (request, reply) => {
-        await User.remove()
-        reply.send({message: 'Deleted all users.'})
+    fastify.put('/users/like/remove', async(request, reply) => {
+        const token = request.cookies['token']
+        
+        const emailUser = verifyToken(token)
+        if (emailUser === null) {
+            reply.status(401).send({message: 'Unauthorized request.'})
+        } else {
+            try {
+                const user = await User.findOneAndUpdate({email: emailUser}, {$pull : {liked: request.body.id}})
+                reply.status(200).send({ message: 'Movie like removed'})
+            }
+            catch(e) {
+                console.log(e);
+                reply.status(500).send({message: 'Something went wrong, please try again later.'})
+            }
+        }
     })
+
+    fastify.put('/users/dislike/add', async(request, reply) => {
+        const token = request.cookies['token']
+        
+        const emailUser = verifyToken(token)
+        if (emailUser === null) {
+            reply.status(401).send({message: 'Unauthorized request.'})
+        } else {
+            try {
+                const user = await User.findOneAndUpdate({email: emailUser}, {$push : {disliked: request.body.id}})
+                reply.status(200).send({ message: 'Movie disliked'})
+            }
+            catch(e) {
+                console.log(e);
+                reply.status(500).send({message: 'Something went wrong, please try again later.'})
+            }
+        }
+    })
+
+    fastify.put('/users/dislike/remove', async(request, reply) => {
+        const token = request.cookies['token']
+        
+        const emailUser = verifyToken(token)
+        if (emailUser === null) {
+            reply.status(401).send({message: 'Unauthorized request.'})
+        } else {
+            try {
+                const user = await User.findOneAndUpdate({email: emailUser}, {$pull : {disliked: request.body.id}})
+                reply.status(200).send({ message: 'Movie dislike removed'})
+            }
+            catch(e) {
+                console.log(e);
+                reply.status(500).send({message: 'Something went wrong, please try again later.'})
+            }
+        }
+    })
+
+    fastify.put('/users/watchlist/add', async(request, reply) => {
+        const token = request.cookies['token']
+        
+        const emailUser = verifyToken(token)
+        if (emailUser === null) {
+            reply.status(401).send({message: 'Unauthorized request.'})
+        } else {
+            try {
+                const user = await User.findOneAndUpdate({email: emailUser}, {$push : {watchlist: request.body.movie}})
+                reply.status(200).send({ message: 'Movie added to watchlist'})
+            }
+            catch(e) {
+                console.log(e);
+                reply.status(500).send({message: 'Something went wrong, please try again later.'})
+            }
+        }
+    })
+
+    fastify.put('/users/watchlist/remove', async(request, reply) => {
+        const token = request.cookies['token']
+        
+        const emailUser = verifyToken(token)
+        if (emailUser === null) {
+            reply.status(401).send({message: 'Unauthorized request.'})
+        } else {
+            try {
+                const user = await User.findOneAndUpdate({email: emailUser}, {$pull : {watchlist: request.body.movie}})
+                reply.status(200).send({ message: 'Movie removed from watchlist'})
+            }
+            catch(e) {
+                console.log(e);
+                reply.status(500).send({message: 'Something went wrong, please try again later.'})
+            }
+        }
+    })
+    
   }
   
   module.exports = routes

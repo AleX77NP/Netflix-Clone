@@ -51,7 +51,14 @@ mongoose.connect('mongodb://mongo/netflix', { useNewUrlParser: true, useCreateIn
   console.log('DB Connection...')
 }).catch((err) => {
   console.log(err)
-})
+}) 
+
+/*mongoose.connect('mongodb://localhost:27017/netflix', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
+.then(() => {
+  console.log('DB Connection...')
+}).catch((err) => {
+  console.log(err)
+}) */
 
 fastify.get('/', async (request, reply) => {
   return { user: 'service' }

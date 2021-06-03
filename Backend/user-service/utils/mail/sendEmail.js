@@ -14,7 +14,7 @@ function sendConfirmationMail(email, token) {
     let mailOptions = {
         from: 'milanovicaleX77@gmail.com',
         to: email,
-        subject: 'Account confirmation',
+        subject: 'Account confirmation - Netflix Clone',
         text: 'Verify account',
         html: `
             <a href='${CLIENT_URL}/confirm/${token}'>Click here to confirm email</a>
