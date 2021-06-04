@@ -9,6 +9,7 @@ import StepTwo from '../components/StepTwo/StepTwo'
 import StepTwoTwo from '../components/StepTwoTwo/StepTwoTwo'
 import StepThree from '../components/StepThree/StepThree'
 import StepThreeTwo from '../components/StepThreeTwo/StepThreeTwo'
+import StepConfirm from '../components/StepConfirm/StepConfirm'
 import LightFooter from '../components/LightFooter/LightFooter'
 import StepThreeThree from '../components/StepThreeThree/StepThreeThree'
 
@@ -32,6 +33,8 @@ const Signup = () => {
                 return <StepThreeTwo />
             case 6:
                 return <StepThreeThree />
+            case 7:
+                return <StepConfirm />
             default:
                 return <StepOne />
         }

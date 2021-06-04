@@ -1,21 +1,12 @@
 .container {
-    height: 100vh;
     margin: auto;
     width: 450px;
     margin-top: 120px;
+    max-width: 90%;
 }
 
 .img {
     width: 100px;
     display: block;
     margin: auto;
-}
-
-.title {
-    text-align: center;
-}
-
-.info {
-    text-align: center;
-    font-size: 17px;
 }

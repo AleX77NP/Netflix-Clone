@@ -3,7 +3,7 @@ import styles from './StepThreeTwo.module.css'
 import Image from 'next/image'
 import { useUserContext } from '../../context/userContext'
 import {plans} from '../../data/plans'
-import {SET_NAME, SET_SURNAME, SIX} from '../../constants/steps'
+import {SET_NAME, SET_SURNAME, SIX, THREE} from '../../constants/steps'
 
 const StepThreeTwo = () => {
 
@@ -45,7 +45,7 @@ const StepThreeTwo = () => {
                     <p className={styles.price}>EUR{plan.monthlyPrice}/month</p>
                     <p className={styles.plan_title}>{plan.title} Plan</p>
                 </div>
-                <a className={styles.change_plan}>Change</a>
+                <a className={styles.change_plan} onClick={() => dispatch({type: THREE})}>Change</a>
             </div> 
             <p className={styles.terms}>
             By checking the checkbox below, you agree to our <span className={styles.terms_blue}>Terms of Use, Privacy Statement</span>, and that you are over 18. Netflix will automatically continue your membership and charge the monthly membership fee (currently EUR9.99) to your payment method until you cancel. You may cancel at any time to avoid future charges.

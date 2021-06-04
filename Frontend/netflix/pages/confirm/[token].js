@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from '../../styles/Confirm.module.css'
 import { useRouter } from 'next/router'
+import NextButton from '../../components/NextButton/NextButton'
 
 const Confirm = () => {
 
@@ -20,7 +21,6 @@ const Confirm = () => {
                   body: JSON.stringify({ token })
             });
             const resJson = await rawRes.json();
-            console.log(resJson)
         } catch(e) {
             setError('Something went wrong. Please try again later.')
             console.log(e)
@@ -36,8 +36,15 @@ const Confirm = () => {
 
     return (
         <div className={styles.container}>
-            CONFIRM EMAIL {token}
-            {error ? <p>{error}</p> : null}
+            <img src="/images/email.png" alt="email" className={styles.img} />
+            {!error ? <><h1 className={styles.title}>Thank You !</h1>
+            <p className={styles.info}>Your account is now confirmed. You can Sign In.</p>
+            <NextButton disabled={false} onPress={() => router.push('/login')} text="Sign In" /></>
+            : <>
+            <h1 className={styles.title}>Error occured.</h1>
+            <p className={styles.info}>{error}</p>
+            <NextButton disabled={false} onPress={() => router.back()} text="Go Back" />
+            </> }
         </div>
     )
 }

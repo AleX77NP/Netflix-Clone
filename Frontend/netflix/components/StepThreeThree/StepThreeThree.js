@@ -2,6 +2,7 @@ import React from 'react'
 import NextButton from '../NextButton/NextButton'
 import styles from './StepThreeThree.module.css'
 import { useUserContext } from '../../context/userContext'
+import {SEVEN} from '../../constants/steps'
 
 
 const StepThreeThree = () => {
@@ -22,7 +23,7 @@ const StepThreeThree = () => {
             <input type="text" className={styles.input} placeholder="Name" />
             <label className={styles.label}>Name</label>
             <input type="text" className={styles.input} placeholder="Name" />
-            <NextButton text="Finish" isDisabled={false} onPress={() => console.log('finish')} />
+            <NextButton text="Finish" isDisabled={false} onPress={() => dispatch({type: SEVEN})} />
         </div>
     )
 }
