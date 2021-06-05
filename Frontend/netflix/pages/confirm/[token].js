@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import styles from '../../styles/Confirm.module.css'
 import { useRouter } from 'next/router'
 import NextButton from '../../components/NextButton/NextButton'
+import {baseURL} from '../../constants/api'
+import authRequests from '../../api/authRequests'
 
 const Confirm = () => {
 
@@ -12,7 +14,7 @@ const Confirm = () => {
 
     const confirmEmail = async(token) => {
         try {
-            const rawRes = await fetch('http://localhost:9003/users/confirm/email', {
+            const rawRes = await fetch(`${baseURL}/${authRequests.confirmAccount}`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -21,6 +23,7 @@ const Confirm = () => {
                   body: JSON.stringify({ token })
             });
             const resJson = await rawRes.json();
+            console.log(resJson)
         } catch(e) {
             setError('Something went wrong. Please try again later.')
             console.log(e)

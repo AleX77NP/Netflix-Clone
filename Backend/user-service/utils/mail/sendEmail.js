@@ -6,13 +6,13 @@ function sendConfirmationMail(email, token) {
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'milanovicaleX77@gmail.com',
-            pass : 'acoaco12' //password here
+            user: process.env.EMAIL,
+            pass : process.env.EMAIL_PASS
         }
     });
 
     let mailOptions = {
-        from: 'milanovicaleX77@gmail.com',
+        from: process.env.EMAIL,
         to: email,
         subject: 'Account confirmation - Netflix Clone',
         text: 'Verify account',

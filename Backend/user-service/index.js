@@ -1,6 +1,7 @@
 // Require fastify
 const fastify = require('fastify')({ logger: true })
 const mongoose = require('mongoose')
+var ip = require('ip');
 
 const PORT = 9003;
 
@@ -11,7 +12,7 @@ const eureka = new Eureka({
     app: 'USER-SERVICE',
     instanceId: 'USER-SERVICE',
     hostName: 'eureka-spring',
-    ipAddr: '0.0.0.0',
+    ipAddr: ip.address(),
     port: {
       '$': 9003,
       '@enabled': 'true',

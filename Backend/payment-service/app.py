@@ -71,12 +71,11 @@ def auth_middleware(func):
 
 @app.route('/', methods=['GET'])
 def index():
-    return jsonify({'message': 'Payment service'})
+    return jsonify({'message': 'Payment service home'})
 
 @app.route('/payment', methods=['GET'])
 def payments():
-    payments = UserPayment.query.all()
-    return user_payments_schema.jsonify(payments)
+    return jsonify({'message': 'Payment service'})
 
 @app.route('/payment/user', methods=['GET'])
 @auth_middleware

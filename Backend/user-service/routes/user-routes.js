@@ -86,8 +86,44 @@ async function routes (fastify, options) {
         } else {
             try {
                 const user = await User.findOne({ email: emailUser }, {email:1, name:1, surname:1,liked:1,disliked:1, watchlist:1, profiles:1, confirmed:1})
-                reply.status(200).send({user})
+                reply.status(200).send({user, token})
             } catch(e) {
+                console.log(e);
+                reply.status(500).send({message: 'Something went wrong, please try again later.'})
+            }
+        }
+    })
+
+    fastify.put('/users/profiles/add', async(request, reply) => {
+        const token = request.cookies['token']
+        
+        const emailUser = verifyToken(token)
+        if (emailUser === null) {
+            reply.status(401).send({message: 'Unauthorized request.'})
+        } else {
+            try {
+                const user = await User.findOneAndUpdate({email: emailUser}, {$push : {profiles: request.body.profile}})
+                reply.status(200).send({ message: 'Profile added'})
+            }
+            catch(e) {
+                console.log(e);
+                reply.status(500).send({message: 'Something went wrong, please try again later.'})
+            }
+        }
+    })
+
+    fastify.put('/users/profiles/remove', async(request, reply) => {
+        const token = request.cookies['token']
+        
+        const emailUser = verifyToken(token)
+        if (emailUser === null) {
+            reply.status(401).send({message: 'Unauthorized request.'})
+        } else {
+            try {
+                const user = await User.findOneAndUpdate({email: emailUser}, {$pull : {profiles: request.body.profile}})
+                reply.status(200).send({ message: 'Profile removed'})
+            }
+            catch(e) {
                 console.log(e);
                 reply.status(500).send({message: 'Something went wrong, please try again later.'})
             }

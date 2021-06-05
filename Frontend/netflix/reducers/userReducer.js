@@ -1,4 +1,4 @@
-import {ONE_TWO, TWO, THREE, FOUR, FIVE, SIX, SEVEN, SET_EMAIL, SET_PLAN, SET_NAME, SET_SURNAME} from '../constants/steps'
+import {ONE_TWO, TWO, THREE, FOUR, FIVE, SIX, SEVEN, SET_EMAIL, SET_PLAN, SET_NAME, SET_SURNAME, SET_PROFILES} from '../constants/steps'
 
 export const userReducer = (state, action) => {
     switch(action.type) {
@@ -57,6 +57,11 @@ export const userReducer = (state, action) => {
             return {
                 ...state,
                 surname: action.payload
+            }
+        case SET_PROFILES:
+            return {
+                ...state,
+                profiles: action.payload
             }
         default:
             return state
