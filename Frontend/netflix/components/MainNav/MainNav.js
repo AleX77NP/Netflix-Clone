@@ -34,7 +34,7 @@ const MainNav = () => {
                 <img src="/images/search.png" alt="search" className={styles.search_img} />
                 <img src="/images/gift.png" alt="gift" className={styles.gift_img} />
                 <img src="/images/reminder.png" alt="reminder" className={styles.reminder_img} />
-                <img src="/images/profile.png" alt="avatar" className={styles.avatar} />
+                <Link href="profile"><img src="/images/profile.png" alt="avatar" className={styles.avatar} /></Link>
             </div>
         </div>
     )

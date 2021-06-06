@@ -1,12 +1,8 @@
 import React from 'react'
 import styles from './StepConfirm.module.css'
 import NextButton from '../NextButton/NextButton'
-import { useUserContext } from '../../context/userContext'
 
 const StepConfirm = () => {
-
-    const {state, dispatch} = useUserContext();
-
     return (
         <div className={styles.container}>
             <img src="/images/email.png" alt="email" className={styles.img} />

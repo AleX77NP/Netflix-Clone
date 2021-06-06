@@ -5,6 +5,8 @@ import { useUserContext } from '../../context/userContext'
 import {SEVEN, SET_PROFILES} from '../../constants/steps'
 import {baseURL} from '../../constants/api'
 import authRequests from '../../api/authRequests'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const StepThreeThree = () => {
 
@@ -13,7 +15,6 @@ const StepThreeThree = () => {
     const [profile2, setProfile2] = useState('')
     const [profile3, setProfile3] = useState('')
     const [profile4, setProfile4] = useState('')
-    const [profile5, setProfile5] = useState('')
 
     const signUp = async(data) => {
         try {
@@ -27,19 +28,27 @@ const StepThreeThree = () => {
             })
             const resJson = await res.json();
             console.log(resJson);
-            dispatch({type: SEVEN})
+            if(res.ok) {
+            dispatch({type: SEVEN}) 
+            } else {
+                toast.dark(resJson.message)
+            }
         } catch(e) {
-            alert('Signup failed.')
+            toast.dark(JSON.stringify(e))
             console.log(e);
         }
     }
 
-    const formatProfilesAndSignup = (prof1,prof2,prof3,prof4) => {
+    const formatProfilesAndSignup = (prof1,prof2,prof3) => {
         const firstProfile = {
             'name': state.name,
             'image': '/images/profiles/profile1.png'
         };
-        let profiles = [prof1, prof2, prof3, prof4]
+        const kidsProfile = {
+            'name': 'Kids',
+            'image': '/images/profiles/kids.png'
+        }
+        let profiles = [prof1, prof2, prof3]
         let final = [firstProfile]
         profiles.forEach(elem => {
             if(elem !== '') {
@@ -50,6 +59,7 @@ const StepThreeThree = () => {
                 final.push(p)
             }
         })
+        final.push(kidsProfile);
         dispatch({type: SET_PROFILES, payload: final})
         let info = {
             'email': state.email,
@@ -70,14 +80,15 @@ const StepThreeThree = () => {
             <label className={styles.label}>Name</label>
             <input type="text" className={styles.input} placeholder="Name" value={state.name} readOnly />
             <label className={styles.label}>Name</label>
+            <input type="text" className={styles.input} placeholder="Name" value="Kids" readOnly />
+            <label className={styles.label}>Name</label>
             <input type="text" className={styles.input} placeholder="Name" onChange={(e) => setProfile2(e.target.value)}  />
             <label className={styles.label}>Name</label>
             <input type="text" className={styles.input} placeholder="Name" onChange={(e) => setProfile3(e.target.value)} />
             <label className={styles.label}>Name</label>
             <input type="text" className={styles.input} placeholder="Name" onChange={(e) => setProfile4(e.target.value)} />
-            <label className={styles.label}>Name</label>
-            <input type="text" className={styles.input} placeholder="Name" onChange={(e) => setProfile5(e.target.value)} />
-            <NextButton text="Finish" isDisabled={false} onPress={() => formatProfilesAndSignup(profile2,profile3,profile4,profile5)} />
+            <ToastContainer />
+            <NextButton text="Finish" isDisabled={false} onPress={() => formatProfilesAndSignup(profile2,profile3,profile4)} />
         </div>
     )
 }

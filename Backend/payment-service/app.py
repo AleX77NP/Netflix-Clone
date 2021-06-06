@@ -17,18 +17,19 @@ eureka_client.init(eureka_server="http://eureka-spring:8761/eureka", app_name="P
 
 base_dir = os.path.abspath(os.path.dirname(__file__))
 
-load_dotenv()
+#load_dotenv()
 
-env_path = Path('.')/'.env'
+#env_path = Path('.')/'.env'
 
-load_dotenv(dotenv_path=env_path)
+#load_dotenv(dotenv_path=env_path)
 
 app = Flask(__name__)
 
-cors = CORS(app, resources={r"*": {"origins": "*"}})
+cors = CORS(app, resources={r"*": {"origins": "http://localhost:3000"}})
 
 app.secret_key = os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://admin:admin@postgres:5432/payments'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(base_dir, 'db.sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -55,15 +56,19 @@ user_payments_schema = UserPaymentSchema(many=True)
 def auth_middleware(func):
     @wraps(func)
     def decorated_function(*args, **kwargs):
+        print(os.getenv('JWT_SECRET'))
         res = '{"message": "Unauthorized request"}'
-        token = request.json['token']
-
-        try:
-            data = jwt.decode(token, os.getenv('JWT_SECRET'),algorithms=["HS256"])
-            user = data['user']
-            return func(*args, **kwargs, user=user)
-        except:
-            return Response(response=res, mimetype='application/json', status=401)
+        if  'JWT' in request.headers:
+            token = request.headers['JWT']
+            try:
+                data = jwt.decode(token, os.getenv('JWT_SECRET'),algorithms=["HS256"])
+                user = data['user']
+                return func(*args, **kwargs, user=user)
+            except Exception as e:
+                print(e)
+                return Response(response=res, mimetype='application/json', status=401)
+        else:
+            return Response(response='{"message": "No token provided."}', mimetype='application/json', status=401)
 
     return decorated_function
 
@@ -71,10 +76,6 @@ def auth_middleware(func):
 
 @app.route('/', methods=['GET'])
 def index():
-    return jsonify({'message': 'Payment service home'})
-
-@app.route('/payment', methods=['GET'])
-def payments():
     return jsonify({'message': 'Payment service'})
 
 @app.route('/payment/user', methods=['GET'])
