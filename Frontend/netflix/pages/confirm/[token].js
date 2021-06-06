@@ -23,7 +23,9 @@ const Confirm = () => {
                   body: JSON.stringify({ token })
             });
             const resJson = await rawRes.json();
-            console.log(resJson)
+            if(!rawRes.ok) {
+                setError(resJson.message)
+            }
         } catch(e) {
             setError('Something went wrong. Please try again later.')
             console.log(e)
