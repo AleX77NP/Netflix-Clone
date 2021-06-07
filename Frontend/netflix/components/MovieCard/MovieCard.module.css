@@ -4,6 +4,7 @@
     transition: transform 500ms;
     position: relative;
     display: block;
+    cursor: pointer;
 }
 
 .poster {
