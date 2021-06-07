@@ -34,7 +34,11 @@ const Login = () => {
             })
             const resJson = await res.json()
             if(!res.ok) {
-                toast.dark(resJson.message)
+                if (res.status === 404) {
+                    toast.dark(resJson.message)
+                } else {
+                    toast.dark("Error occured. Please try again later.")
+                }
             } else {
                 router.replace('/')
             }

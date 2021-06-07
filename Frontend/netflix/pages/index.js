@@ -5,40 +5,12 @@ import MainNav from '../components/MainNav/MainNav'
 import MoviesRow from '../components/MoviesRow/MoviesRow'
 import DarkFooter from '../components/DarkFooter/DarkFooter'
 import styles from '../styles/Home.module.css'
-import { baseURL, SET_AUTH_USER_TOKEN } from '../constants/api'
-import authRequests from '../api/authRequests'
-import { useEffect } from 'react'
-import { useRouter } from 'next/router'
-import { useUserContext } from '../context/userContext'
+import AuthLayout from '../components/AuthLayout/AuthLayout'
 
 export default function Home() {
 
-  const router = useRouter();
-
-  const {dispatch} = useUserContext();
-
-  useEffect(() => {
-    loadUser();
-  },[])
-
-  const loadUser = async() => {
-    try {
-      const res =  await fetch(`${baseURL}/${authRequests.me}`, {
-        credentials: 'include'
-      });
-      const data = await res.json()
-      console.log(data)
-      if(!res.ok) {
-        await router.replace('/landing')
-      } else {
-        dispatch({type: SET_AUTH_USER_TOKEN, payload: data})
-      }
-    } catch(e) {
-      console.log(e)
-    }
-  }
-
   return (
+    <AuthLayout>
     <div className={styles.body}>
       <Head>
         <title>Netflix</title>
@@ -63,6 +35,7 @@ export default function Home() {
     <DarkFooter />
     </div>
     </div>
+    </AuthLayout>
   )
 }
 

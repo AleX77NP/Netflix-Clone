@@ -31,7 +31,11 @@ const StepThreeThree = () => {
             if(res.ok) {
             dispatch({type: SEVEN}) 
             } else {
+                if(res.status === 400) {
                 toast.dark(resJson.message)
+                } else {
+                    toast.dark('Error occured. Please try again later.')
+                }
             }
         } catch(e) {
             toast.dark(JSON.stringify(e))

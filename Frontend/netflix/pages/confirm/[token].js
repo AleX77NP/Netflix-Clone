@@ -24,8 +24,13 @@ const Confirm = () => {
             });
             const resJson = await rawRes.json();
             if(!rawRes.ok) {
-                setError(resJson.message)
+                if(rawRes.status === 401) {
+                    setError(resJson.message)
+                } else {
+                setError('Failed to confirm email address.')
+                }
             }
+            console.log(resJson)
         } catch(e) {
             setError('Something went wrong. Please try again later.')
             console.log(e)

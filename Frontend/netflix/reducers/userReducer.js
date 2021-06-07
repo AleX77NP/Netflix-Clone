@@ -1,5 +1,5 @@
 import {ONE_TWO, TWO, THREE, FOUR, FIVE, SIX, SEVEN, SET_EMAIL, SET_PLAN, SET_NAME, SET_SURNAME, SET_PROFILES} from '../constants/steps'
-import {SET_AUTH_USER_TOKEN} from '../constants/api'
+import {SET_AUTH_USER_TOKEN, SET_PROFILE, REMOVE_AUTH_USER_TOKEN} from '../constants/api'
 
 export const userReducer = (state, action) => {
     switch(action.type) {
@@ -68,6 +68,17 @@ export const userReducer = (state, action) => {
             return {
                 ...state,
                 authUser: action.payload
+            }
+        case SET_PROFILE:
+            return {
+                ...state,
+                profileSelected: true
+            }
+        case REMOVE_AUTH_USER_TOKEN:
+            return {
+                ...state,
+                authUser: null,
+                profileSelected: false
             }
         default:
             return state

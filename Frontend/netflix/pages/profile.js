@@ -1,16 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import authRequests from '../api/authRequests';
-import { baseURL, SET_AUTH_USER_TOKEN } from '../constants/api';
+import { baseURL, REMOVE_AUTH_USER_TOKEN } from '../constants/api';
 import { useUserContext } from '../context/userContext'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/router'
+import AuthLayout from '../components/AuthLayout/AuthLayout';
 
 const profile = () => {
 
     const {state, dispatch} = useUserContext();
 
     const router = useRouter();
+
+    useEffect(() => {
+        console.log(state)
+    })
 
     const logout = async() => {
         try {
@@ -23,7 +28,7 @@ const profile = () => {
                   body: JSON.stringify({})
             })
             if (res.ok) {
-                dispatch({type: SET_AUTH_USER_TOKEN, payload: null})
+                dispatch({type: REMOVE_AUTH_USER_TOKEN})
                 await router.replace('/landing')
             } else {
                 toast.dark('Error occured. Please try again later.')
@@ -35,10 +40,10 @@ const profile = () => {
     }
 
     return (
-        <div>
+        <AuthLayout>
             <ToastContainer />
             <button onClick={logout}>Logout</button>
-        </div>
+        </AuthLayout>
     )
 }
 
