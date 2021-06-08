@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import styles from './MainNav.module.css'
+import { useUserContext } from '../../context/userContext'
 
 const MainNav = () => {
+
+    const {state} = useUserContext();
 
     const [navDark, setNavDark] = useState(false);
 
@@ -26,15 +29,15 @@ const MainNav = () => {
         <div className={navDark ? styles.nav_wrapper_dark : styles.nav_wrapper}>
             <div className={styles.nav_left}>
                 <Link href="/"><img src="/images/logo.png" alt="logo" className={styles.logo_img} /></Link>
-                <a className={styles.nav_link}>Home</a>
-                <a className={styles.nav_link}>My List</a>
+                <Link href="/"><a className={styles.nav_link}>Home</a></Link>
+                <Link href="/mylist"><a className={styles.nav_link}>My List</a></Link>
             </div>
 
             <div className={styles.nav_right}>
                 <img src="/images/search.png" alt="search" className={styles.search_img} />
                 <img src="/images/gift.png" alt="gift" className={styles.gift_img} />
                 <img src="/images/reminder.png" alt="reminder" className={styles.reminder_img} />
-                <Link href="profile"><img src="/images/profile.png" alt="avatar" className={styles.avatar} /></Link>
+                <Link href="profile"><img src={state.profileImage ? state.profileImage : "/images/profile.png"} alt="avatar" className={styles.avatar} /></Link>
             </div>
         </div>
     )

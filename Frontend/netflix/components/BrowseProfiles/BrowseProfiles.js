@@ -8,7 +8,7 @@ const BrowseProfiles = ({profiles, setProfile}) => {
             <p className={styles.title}>Who's watching?</p>
             <div className={styles.profiles_wrapper}>
                 {profiles && profiles.map((profile) => (
-                    <div key={profile.image} onClick={setProfile}>
+                    <div key={profile.image} onClick={() => setProfile(profile.image)}>
                         <img src={profile.image} alt="image-profile" className={styles.avatar} />
                         <p className={styles.name}>{profile.name}</p>
                     </div>

@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/router'
 import AuthLayout from '../components/AuthLayout/AuthLayout';
+import MainNav from '../components/MainNav/MainNav';
 
 const profile = () => {
 
@@ -42,6 +43,7 @@ const profile = () => {
     return (
         <AuthLayout>
             <ToastContainer />
+            <MainNav />
             <button onClick={logout}>Logout</button>
         </AuthLayout>
     )

@@ -15,7 +15,8 @@ const AuthLayout = (props) => {
 
     const {state, dispatch} = useUserContext()
 
-    const [ready, setReady] = useState(false)
+    console.log(state.authUser)
+
     const [selected, setSelected] = useState(state.profileSelected ? true: false)
 
     const fetcher = async(url) => {
@@ -24,22 +25,21 @@ const AuthLayout = (props) => {
         if(!data.user) {
             await router.replace('/landing')
         } else {
-            setReady(true)
             dispatch({type: SET_AUTH_USER_TOKEN, payload: data})
             return data
         }
     }
 
-    const selectProfile = () => {
+    const selectProfile = (img) => {
         setSelected(true)
-        dispatch({type: SET_PROFILE})
+        dispatch({type: SET_PROFILE, payload: img})
     }
 
     const {data, error} = useSWR(url, fetcher)
 
     return data ? (
         <>
-        {ready ? selected ? props.children : <BrowseProfiles profiles={data.user.profiles} setProfile={selectProfile} /> : <Loading />}
+        {selected ? props.children : <BrowseProfiles profiles={data.user.profiles} setProfile={selectProfile} /> }
         </>
     ) : <Loading />
 }

@@ -12,7 +12,8 @@ const initialStepState = {
     surname: '',
     profiles: [],
     authUser: null,
-    profileSelected: false
+    profileSelected: false,
+    profileImage: null
 }
 
 export function AppWrapper({children}) {

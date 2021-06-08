@@ -72,6 +72,7 @@ export const userReducer = (state, action) => {
         case SET_PROFILE:
             return {
                 ...state,
+                profileImage: action.payload,
                 profileSelected: true
             }
         case REMOVE_AUTH_USER_TOKEN:

@@ -20,7 +20,7 @@ function useMoviesObservable(baseUrl, category) {
             )
             subscription = movies$.subscribe({
                 next: res => {
-                    if(res.results) {
+                    if(res && res.results) {
                         setResponse(res)
                         setBannerMovie(res.results[Math.floor(Math.random() * res.results.length)])
                     } else {
