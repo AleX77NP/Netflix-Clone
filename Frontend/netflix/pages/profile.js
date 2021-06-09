@@ -47,7 +47,9 @@ const Profile = () => {
     }
 
     useEffect(() => {
-        fetchPlan();
+        let timer = setTimeout(() => fetchPlan(),1000)
+
+        return () => clearTimeout(timer)
     },[failed])
 
     const onChangePlan = (value) => {
@@ -119,7 +121,7 @@ const Profile = () => {
                         <hr style={{marginTop: '60px'}} />
                         <div className={styles.content_part}>
                         <p style={{color: 'gray', fontSize: '18px'}}>PLAN DETAILS</p>
-                        <p style={{fontWeight: 'bold'}}>{myPlan ? getPlanAndPlans(myPlan) : 'Loading...'}</p>
+                        <p style={{fontWeight: 'bold'}}>{myPlan ? getPlanAndPlans(myPlan) : failed ? 'Plan not available' : 'Loading...'}</p>
                         </div>
                         <div id={styles.plan_info}>
                             <button className={styles.edit_btn}>Save</button>
@@ -130,7 +132,7 @@ const Profile = () => {
                             <div style={{marginBottom: '25px'}}>
                                 {
                                     state.authUser && state.authUser.user.profiles.map((profile) => (
-                                        <div className={styles.content_part} key={profile.name}>
+                                        <div className={styles.content_part} key={profile.name} style={{marginBottom: '10px'}}>
                                             <img src={profile.image} className={styles.profile_img} alt="profile-img" />
                                             <p>{profile.name}</p>
                                             <div>
