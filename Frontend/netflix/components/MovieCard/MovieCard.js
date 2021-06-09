@@ -9,6 +9,7 @@ import authRequests from '../../api/authRequests';
 import { mutate } from 'swr'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {arrayIncludes, arrayIncludesId} from '../../utils/arrays'
 
 const MovieCard = ({movie}) => {
 
@@ -44,9 +45,85 @@ const MovieCard = ({movie}) => {
             }
         } catch(e) {
             toast.dark('Error occured. Please try again later.')
+            console.log(e)
         }
       }
     }
+
+    const likeMovie = async(myMovie, arr, arr2) => {
+        console.log('click')
+        let url = `${baseURL}/${authRequests.addLike}`
+        if(arrayIncludesId(arr2, myMovie.id)) {
+            toast.dark('You disliked this movie. You have to remove the dislike first.')
+        } else {
+            if (arrayIncludesId(arr, myMovie.id)) {
+                url = `${baseURL}/${authRequests.removeLike}`
+            }
+            try {
+                let data = {
+                    'id': myMovie.id
+                }
+                const res = await fetch(url, {
+                    method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  },
+                  credentials: 'include',
+                  body: JSON.stringify(data)
+                })
+                const resJson = await res.json();
+                if(res.status !== 200) {
+                    toast.dark('Error occured. Please try again later.')
+                    console.log(resJson)
+                } else {
+                    mutate(`${baseURL}/${authRequests.me}`)
+                    toast.dark(resJson.message)
+                }
+            } catch(e) {
+                toast.dark('Error occured. Please try again later.')
+                console.log(e)
+            }
+        }
+    }
+
+    const dislikeMovie = async(myMovie, arr, arr2) => {
+        console.log('click')
+        let url = `${baseURL}/${authRequests.addDislike}`
+        if(arrayIncludesId(arr2, myMovie.id)) {
+            toast.dark('You liked this movie. You have to remove the dislike first.')
+        } else {
+            if (arrayIncludesId(arr, myMovie.id)) {
+                url = `${baseURL}/${authRequests.removeDislike}`
+            }
+            try {
+                let data = {
+                    'id': myMovie.id
+                }
+                const res = await fetch(url, {
+                    method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  },
+                  credentials: 'include',
+                  body: JSON.stringify(data)
+                })
+                const resJson = await res.json();
+                if(res.status !== 200) {
+                    toast.dark('Error occured. Please try again later.')
+                    console.log(resJson)
+                } else {
+                    mutate(`${baseURL}/${authRequests.me}`)
+                    toast.dark(resJson.message)
+                }
+            } catch(e) {
+                toast.dark('Error occured. Please try again later.')
+                console.log(e)
+            }
+        }
+    }
+
 
 
     const cardWidth = useCallback(() => {
@@ -61,19 +138,19 @@ const MovieCard = ({movie}) => {
         >
             {
                 !showDetails ? <img src={`${baseImgUrl}${movie?.backdrop_path}`}
-                alt="movie_poster"
+                alt=""
                 className={styles.poster}
             /> : <>
             <img src={`${baseImgUrl}${movie?.backdrop_path}`}
-                alt="movie_poster"
+                alt=""
                 className={styles.poster}
             />
             <div className={styles.info}>
             <div className={styles.buttons}>
                 <button className={styles.button}><img className={styles.icon} src="/images/play_white.png" alt="play" /></button>
-                <button onClick={() => addToWatchlist(movie)} className={styles.button}><img className={styles.icon} src="/images/plus.png" alt="plus" /></button>
-                <button className={styles.button}><img className={styles.icon} src="/images/like.png" alt="like" /></button>
-                <button className={styles.button}><img className={styles.icon} src="/images/dislike.png" alt="dislike" /></button>
+                <button onClick={() => addToWatchlist(movie)} className={arrayIncludes(state.authUser.user.watchlist, movie) ? styles.button_orange : styles.button}><img className={styles.icon} src="/images/plus.png" alt="plus" /></button>
+                <button onClick={() => likeMovie(movie,state.authUser.user.liked, state.authUser.user.disliked)} className={arrayIncludesId(state.authUser.user.liked, movie.id) ? styles.button_green : styles.button}><img className={styles.icon} src="/images/like.png" alt="like" /></button>
+                <button onClick={() => dislikeMovie(movie,state.authUser.user.disliked, state.authUser.user.liked)} className={arrayIncludesId(state.authUser.user.disliked, movie.id) ? styles.button_red : styles.button}><img className={styles.icon} src="/images/dislike.png" alt="dislike" /></button>
             </div>
             <p className={styles.rating}>{movie?.vote_average}/10 <span className={styles.popularity}>Popularity: {movie?.popularity}</span></p>
             <h6 className={styles.title}>{movie?.title || movie?.name || movie?.original_name}</h6>

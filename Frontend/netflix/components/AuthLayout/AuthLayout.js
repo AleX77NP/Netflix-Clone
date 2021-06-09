@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import authRequests from '../../api/authRequests'
 import { baseURL, SET_AUTH_USER_TOKEN, SET_PROFILE } from '../../constants/api'
 import useSWR from 'swr'
@@ -14,8 +14,6 @@ const AuthLayout = (props) => {
     const url = `${baseURL}/${authRequests.me}`
 
     const {state, dispatch} = useUserContext()
-
-    console.log(state.authUser)
 
     const [selected, setSelected] = useState(state.profileSelected ? true: false)
 
@@ -35,7 +33,7 @@ const AuthLayout = (props) => {
         dispatch({type: SET_PROFILE, payload: img})
     }
 
-    const {data, error} = useSWR(url, fetcher)
+    const {data, error} =  useSWR(url, fetcher)
 
     return data ? (
         <>

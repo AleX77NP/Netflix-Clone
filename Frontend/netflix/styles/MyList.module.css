@@ -53,6 +53,10 @@
   border: none;
   outline: none;
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .button_remove {
@@ -62,9 +66,13 @@
   font-weight: bold;
   border: none;
   outline: none;
-  background-color: gray;
+  background-color: rgb(59, 59, 59);
   color: white;
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .button_remove:hover {

@@ -1,0 +1,133 @@
+.body {
+    font-family: 'Arial', 'sans-serif';
+    -webkit-font-smoothing: antialiased;
+    height: 100%;
+    background-color: rgb(243, 243, 243);
+}
+
+.nav {
+    position: fixed;
+    z-index: 3;
+    padding-top: 20px;
+    background-color: black;
+    height: 68px;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.main {
+    padding-top: 80px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-left: 60px;
+}
+
+.account {
+    font-size: 36px;
+    margin-bottom: 25px;
+}
+
+.content {
+    width: 1000px;
+    max-width: 95%;
+    margin: auto;
+}
+
+.content_part {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#plan_info {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.cancel_btn {
+    height: 36px;
+    width: 202px;
+    font-size: 12px;
+    background-color: rgb(230,230,230);
+    outline: none;
+    border: none;
+    border-bottom: 1px solid gray;
+}
+
+.edit_btn {
+    height: 36px;
+    width: 180px;
+    font-size: 14px;
+    background-color: rgb(230,230,230);
+    outline: none;
+    border: none;
+    border-bottom: 1px solid gray;
+}
+
+.btn_add {
+    background-color: rgb(230,230,230);
+    outline: none;
+    border: none;
+    font-size: 14px;
+    border-bottom: 1px solid gray;
+}
+
+.profile_img {
+    width: 50px;
+    margin-right: 25px;
+}
+
+.delete {
+    width: 20px;
+    margin-left: 25px;
+}
+
+
+.footer_wrapper {
+    width: 100%;
+    background-color: rgb(243, 243, 243);
+}
+
+@media only screen and (max-width: 919px) {
+    .main {
+      padding-left: 30px;
+    }
+  }
+  
+  @media only screen and (max-width: 600px) {
+    .main {
+      padding-left: 15px;
+    }
+    .content_part {
+        flex-direction: column;
+    }
+    #buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    .delete {
+        margin-left: 0;
+        margin-bottom: 5px;
+    }
+    .profile_img {
+        margin-right: 0;
+        margin: auto;
+    }
+    .cancel_btn {
+        margin-bottom: 15px;
+    }
+    .account {
+        text-align: center;
+    }
+    #plan_info {
+        justify-content: center;
+    }
+  }

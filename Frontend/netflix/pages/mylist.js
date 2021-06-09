@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const MyList = () => {
 
-    const {state, dispatch} = useUserContext()
+    const {state} = useUserContext()
 
     const removeFromWatchlist = async(myMovie) => {
         let data = {
@@ -52,7 +52,7 @@ const MyList = () => {
                 <header className={styles.nav}>
                     <MainNav />
                 </header>
-                <div style ={{minHeight: '100vh'}}>
+                <div style={{minHeight: '100vh'}}>
                 <ToastContainer />
                 <section className={styles.main}>
                     {
@@ -61,8 +61,8 @@ const MyList = () => {
                                 <img src={`${baseImgUrl}${movie?.backdrop_path}`} alt="movie_poster" className={styles.img_movie} />
                                 <p className={styles.name}>{movie.name || movie.title || movie.originalTitle}</p>
                                 <div className={styles.buttons}>
-                                    <button className={styles.button_play}>Play</button>
-                                    <button onClick={() => removeFromWatchlist(movie)} className={styles.button_remove}>Remove</button>
+                                    <button className={styles.button_play}><span style={{marginRight: '2px'}}>Play</span><img src="/images/play.png" alt="play-img" style={{width: '12px', marginTop: '2px'}} /></button>
+                                    <button onClick={() => removeFromWatchlist(movie)} className={styles.button_remove}><span style={{marginRight: '4px'}}>Remove</span><img src="/images/delete.png" alt="play-delete" style={{width: '12px', marginTop: '2px'}} /></button>
                                 </div>
                             </div>
                         ))
