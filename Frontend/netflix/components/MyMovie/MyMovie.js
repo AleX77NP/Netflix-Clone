@@ -5,6 +5,7 @@ import { baseURL} from '../../constants/api'
 import authRequests from '../../api/authRequests'
 import { mutate } from 'swr'
 import { ToastContainer, toast } from 'react-toastify';
+import PropTypes from 'prop-types';
 
 const MyMovie = ({movie}) => {
 
@@ -46,5 +47,10 @@ const MyMovie = ({movie}) => {
          </div>
     )
 }
+
+MyMovie.propTypes = {
+    movie: PropTypes.object
+}
+
 
 export default MyMovie

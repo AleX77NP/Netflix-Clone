@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './MyProfile.module.css'
+import PropTypes from 'prop-types';
 
 const MyProfile = ({profile}) => {
     return (
@@ -9,6 +10,10 @@ const MyProfile = ({profile}) => {
             <img src="/images/delete.png" className={styles.delete}  alt="profile-delete" />
         </div>
     )
+}
+
+MyProfile.propTypes = {
+    profile: PropTypes.object,
 }
 
 export default MyProfile
