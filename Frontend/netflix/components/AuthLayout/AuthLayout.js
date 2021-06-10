@@ -6,6 +6,8 @@ import { useRouter } from 'next/router'
 import Loading from '../Loading/Loading'
 import { useUserContext } from '../../context/userContext'
 import BrowseProfiles from '../BrowseProfiles/BrowseProfiles'
+import { toast } from 'react-toastify'
+import ErrorContainer from '../ErrorContainer/ErrorContainer'
 
 const AuthLayout = (props) => {
 
@@ -22,7 +24,12 @@ const AuthLayout = (props) => {
         const data = await res.json()
         if(!data.user) {
             await router.replace('/landing')
+            toast.dark('An error occurred while fetching user data.')
         } else {
+            if(!data.user.confirmed) {
+                await router.replace('/login')
+                toast.dark("Please confirm Your account first.")
+            }
             dispatch({type: SET_AUTH_USER_TOKEN, payload: data})
             return data
         }
@@ -39,7 +46,7 @@ const AuthLayout = (props) => {
         <>
         {selected ? props.children : <BrowseProfiles profiles={data.user.profiles} setProfile={selectProfile} /> }
         </>
-    ) : <Loading />
+    ) : error ? <ErrorContainer /> : <Loading />
 }
 
 export default AuthLayout

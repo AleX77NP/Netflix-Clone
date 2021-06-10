@@ -237,6 +237,23 @@ async function routes (fastify, options) {
             }
         }
     })
+
+    fastify.delete('/users/deactivate', async(request, reply) => {
+        const token = request.cookies['token']
+        
+        const emailUser = verifyToken(token)
+        if (emailUser === null) {
+            reply.status(401).send({message: 'Unauthorized request.'})
+        } else {
+            try {
+                const user = await User.findOneAndDelete({email: emailUser})
+                reply.status(200).send({ message: 'Account deactivated'})
+            } catch(e) {
+                console.log(e);
+                reply.status(500).send({message: 'Something went wrong, please try again later.'})
+            }
+        }
+    })
     
   }
   

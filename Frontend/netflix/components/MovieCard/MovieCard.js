@@ -138,11 +138,11 @@ const MovieCard = ({movie}) => {
         >
             {
                 !showDetails ? <img src={`${baseImgUrl}${movie?.backdrop_path}`}
-                alt=""
+                alt="movie-card"
                 className={styles.poster}
             /> : <>
             <img src={`${baseImgUrl}${movie?.backdrop_path}`}
-                alt=""
+                alt="movie-card"
                 className={styles.poster}
             />
             <div className={styles.info}>

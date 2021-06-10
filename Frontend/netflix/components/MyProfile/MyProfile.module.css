@@ -12,6 +12,13 @@
 .delete {
     width: 20px;
     margin-left: 25px;
+    cursor: pointer;
+}
+
+.star {
+    width: 25px;
+    margin-left: 25px;
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 600px) {

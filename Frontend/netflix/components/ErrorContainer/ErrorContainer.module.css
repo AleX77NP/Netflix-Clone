@@ -1,0 +1,28 @@
+.container {
+    background-color: black;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    width: 300px;
+}
+
+.error {
+    font-weight: bold;
+    font-size: 40px;
+    color: white;
+    text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .logo {
+        width: 150px;
+    }
+    .error {
+        font-size: 20px;
+    }
+}
