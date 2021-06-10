@@ -12,10 +12,11 @@ import StepThreeTwo from '../components/StepThreeTwo/StepThreeTwo'
 import StepConfirm from '../components/StepConfirm/StepConfirm'
 import LightFooter from '../components/LightFooter/LightFooter'
 import StepThreeThree from '../components/StepThreeThree/StepThreeThree'
+import { BACK } from '../constants/steps'
 
 const Signup = () => {
 
-    const {state} = useUserContext();
+    const {state, dispatch} = useUserContext();
 
     const renderStep = () => {
         switch(state.step) {
@@ -40,6 +41,12 @@ const Signup = () => {
         }
     }
 
+    const goBack = () => {
+        if(state.step > 0) {
+            dispatch({type: BACK})
+        }
+    }
+
     return (
         <div className={styles.body}>
             <Head>
@@ -49,6 +56,10 @@ const Signup = () => {
             <hr className={styles.white_separator} />
             <main className={styles.main_region}>
             {renderStep()}
+            <div onClick={goBack} style={{width: '65px',margin: 'auto', marginTop: '65px', cursor: 'pointer'}}>
+                <img src="/images/back.png" alt="back-img" style={{width: '90%', display: 'block', margin: 'auto'}} />
+                <p style={{fontWeight: 'bold', color: 'black', 'marginTop': '5px'}}>Go Back</p>
+            </div>
             </main>
             <LightFooter />
         </div>

@@ -1,4 +1,4 @@
-import {ONE_TWO, TWO, THREE, FOUR, FIVE, SIX, SEVEN, SET_EMAIL, SET_PLAN, SET_NAME, SET_SURNAME, SET_PROFILES} from '../constants/steps'
+import {ONE_TWO, TWO, THREE, FOUR, FIVE, SIX, SEVEN, SET_EMAIL, SET_PLAN, SET_NAME, SET_SURNAME, SET_PROFILES, BACK} from '../constants/steps'
 import {SET_AUTH_USER_TOKEN, SET_PROFILE, REMOVE_AUTH_USER_TOKEN} from '../constants/api'
 
 export const userReducer = (state, action) => {
@@ -38,6 +38,11 @@ export const userReducer = (state, action) => {
             return {
                 ...state,
                 step: 7
+            }
+        case BACK:
+            return {
+                ...state,
+                step: state.step - 1
             }
         case SET_EMAIL:
             return {

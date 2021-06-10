@@ -1,5 +1,6 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import styles from './MovieCard.module.css'
+import Link from 'next/link'
 import PropTypes from 'prop-types';
 import {truncate} from '../../utils/strings'
 import useWindowDimensions from '../../hooks/useWindowDimensions'
@@ -147,7 +148,7 @@ const MovieCard = ({movie}) => {
             />
             <div className={styles.info}>
             <div className={styles.buttons}>
-                <button className={styles.button}><img className={styles.icon} src="/images/play_white.png" alt="play" /></button>
+                <Link href="/play"><button className={styles.button}><img className={styles.icon} src="/images/play_white.png" alt="play" /></button></Link>
                 <button onClick={() => addToWatchlist(movie)} className={arrayIncludes(state.authUser.user.watchlist, movie) ? styles.button_orange : styles.button}><img className={styles.icon} src="/images/plus.png" alt="plus" /></button>
                 <button onClick={() => likeMovie(movie,state.authUser.user.liked, state.authUser.user.disliked)} className={arrayIncludesId(state.authUser.user.liked, movie.id) ? styles.button_green : styles.button}><img className={styles.icon} src="/images/like.png" alt="like" /></button>
                 <button onClick={() => dislikeMovie(movie,state.authUser.user.disliked, state.authUser.user.liked)} className={arrayIncludesId(state.authUser.user.disliked, movie.id) ? styles.button_red : styles.button}><img className={styles.icon} src="/images/dislike.png" alt="dislike" /></button>

@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import styles from './MainNav.module.css'
 import { useUserContext } from '../../context/userContext'
+import {useRouter} from 'next/router'
 
 const MainNav = () => {
 
     const {state} = useUserContext();
+
+    const router = useRouter();
 
     const [navDark, setNavDark] = useState(false);
 
@@ -29,8 +32,8 @@ const MainNav = () => {
         <div className={navDark ? styles.nav_wrapper_dark : styles.nav_wrapper}>
             <div className={styles.nav_left}>
                 <Link href="/"><img src="/images/logo.png" alt="logo" className={styles.logo_img} /></Link>
-                <Link href="/"><a className={styles.nav_link}>Home</a></Link>
-                <Link href="/mylist"><a className={styles.nav_link}>My List</a></Link>
+                <Link href="/"><a className={router.pathname === "/" ? styles.nav_link_active : styles.nav_link}>Home</a></Link>
+                <Link href="/mylist"><a className={router.pathname === "/mylist" ? styles.nav_link_active : styles.nav_link}>My List</a></Link>
             </div>
 
             <div className={styles.nav_right}>

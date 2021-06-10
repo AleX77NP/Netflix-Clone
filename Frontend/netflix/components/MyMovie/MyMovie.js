@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { baseImgUrl } from '../../constants/api'
 import styles from './MyMovie.module.css'
 import { baseURL} from '../../constants/api'
@@ -40,7 +41,7 @@ const MyMovie = ({movie}) => {
             <img src={`${baseImgUrl}${movie?.backdrop_path}`} alt="movie_poster" className={styles.img_movie} />
             <p className={styles.name}>{movie.name || movie.title || movie.originalTitle}</p>
             <div className={styles.buttons}>
-                <button className={styles.button_play}><span style={{marginRight: '2px'}}>Play</span><img src="/images/play.png" alt="play-img" style={{width: '12px', marginTop: '2px'}} /></button>
+                <Link href="/play"><button className={styles.button_play}><span style={{marginRight: '2px'}}>Play</span><img src="/images/play.png" alt="play-img" style={{width: '12px', marginTop: '2px'}} /></button></Link>
                 <button onClick={() => removeFromWatchlist(movie)} className={styles.button_remove}><span style={{marginRight: '4px'}}>Remove</span><img src="/images/delete.png" alt="play-delete" style={{width: '12px', marginTop: '2px'}} /></button>
             </div>
             <ToastContainer />

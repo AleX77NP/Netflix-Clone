@@ -20,6 +20,12 @@
     flex-wrap: wrap;
 }
 
+@media only screen and (max-width: 1024px) {
+  .main {
+    justify-content: center;
+  }
+}
+
 @media only screen and (max-width: 919px) {
   .main {
     padding-left: 30px;
@@ -29,6 +35,5 @@
 @media only screen and (max-width: 600px) {
   .main {
     padding-left: 15px;
-    justify-content: center;
   }
 }

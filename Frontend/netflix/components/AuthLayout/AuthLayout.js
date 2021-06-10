@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useState } from 'react'
 import authRequests from '../../api/authRequests'
 import { baseURL, SET_AUTH_USER_TOKEN, SET_PROFILE } from '../../constants/api'
 import useSWR from 'swr'
