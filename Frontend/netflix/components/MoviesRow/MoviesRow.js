@@ -17,11 +17,11 @@ const MoviesRow = ({title, category, isLarge}) => {
     const [first, setFirst] = useState(0)
     const [last, setLast] = useState(8);
 
-    useEffect(useCallback(() => {
+    useEffect(() => {
         if(response && response.results) {
             setPaginated(resultsPaged(response.results, first,last))
         }
-    },[first,last, response]),[first,last, response])
+    },[first,last, response])
 
     const goNext = () => {
         if(last < response.results.length) {

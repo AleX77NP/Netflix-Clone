@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import styles from './MovieCard.module.css'
 import PropTypes from 'prop-types';
 import {truncate} from '../../utils/strings'
@@ -126,7 +126,7 @@ const MovieCard = ({movie}) => {
 
 
 
-    const cardWidth = useCallback(() => {
+    const cardWidth = useMemo(() => {
         return (width/8)-24;
     },[width])
 
@@ -134,7 +134,7 @@ const MovieCard = ({movie}) => {
         <div className={styles.card}
         onMouseEnter={() => setShowDetails(true)}
         onMouseLeave={() => setShowDetails(false)}
-        style={{width:  width > 1200 ? `${cardWidth()}px` : '120px'}}
+        style={{width:  width > 1200 ? `${cardWidth}px` : '120px'}}
         >
             {
                 !showDetails ? <img src={`${baseImgUrl}${movie?.backdrop_path}`}

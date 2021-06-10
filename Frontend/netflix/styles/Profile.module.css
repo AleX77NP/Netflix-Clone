@@ -80,16 +80,17 @@
     border-bottom: 1px solid gray;
 }
 
-.profile_img {
-    width: 50px;
-    margin-right: 25px;
+.logout_btn {
+    background-color: rgb(230,230,230);
+    outline: none;
+    border: none;
+    font-size: 14px;
+    border-bottom: 1px solid gray;
+    height: 36px;
+    width: 180px;
+    float: right;
+    margin-top: 15px;
 }
-
-.delete {
-    width: 20px;
-    margin-left: 25px;
-}
-
 
 .footer_wrapper {
     width: 100%;
@@ -128,5 +129,16 @@
     }
     #plan_info {
         justify-content: center;
+    }
+    .btn_add {
+        margin-top: 10px;
+    }
+    .logout_btn {
+        float: none;
+        display: block;
+        margin: 30px auto;
+    }
+    #above_btn {
+        display: none;
     }
   }

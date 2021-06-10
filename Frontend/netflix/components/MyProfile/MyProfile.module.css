@@ -1,0 +1,28 @@
+.content_part {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile_img {
+    width: 50px;
+    margin-right: 25px;
+}
+
+.delete {
+    width: 20px;
+    margin-left: 25px;
+}
+
+@media only screen and (max-width: 600px) {
+    .content_part {
+        flex-direction: column;
+    }
+    .delete {
+        margin-left: 0;
+    }
+    .profile_img {
+        margin-right: 0;
+        margin: auto;
+    }
+}

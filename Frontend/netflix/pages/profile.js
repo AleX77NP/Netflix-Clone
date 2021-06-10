@@ -12,6 +12,7 @@ import MainNav from '../components/MainNav/MainNav';
 import LightFooter from '../components/LightFooter/LightFooter'
 import paymentRequests from '../api/paymentRequests';
 import { plans } from '../data/plans';
+import MyProfile from '../components/MyProfile/MyProfile';
 
 const Profile = () => {
 
@@ -132,13 +133,7 @@ const Profile = () => {
                             <div style={{marginBottom: '25px'}}>
                                 {
                                     state.authUser && state.authUser.user.profiles.map((profile) => (
-                                        <div className={styles.content_part} key={profile.name} style={{marginBottom: '10px'}}>
-                                            <img src={profile.image} className={styles.profile_img} alt="profile-img" />
-                                            <p>{profile.name}</p>
-                                            <div>
-                                            <img src="/images/delete.png" className={styles.delete}  alt="profile-delete" />
-                                            </div>
-                                        </div>
+                                        <MyProfile key={profile.name} profile={profile} />
                                     ))
                                 }
                             </div>
@@ -147,12 +142,14 @@ const Profile = () => {
                             <input style={{width: '150px'}} placeholder="Profile..." />
                             <button className={styles.btn_add} style={{width: '50px'}}>Add</button>
                         </div>
+                        <hr id={styles.above_btn}  style={{marginTop: '60px'}} />
+                        <button className={styles.logout_btn} onClick={logout}>Logout</button>
                     </div>
                 </section>
             </div>
+            <hr style={{border: '0.5px solid lightgray'}} />
             <div className={styles.footer_wrapper}>
                 <LightFooter />
-                <button onClick={logout}>Logout</button>
             </div>
         </div>
         </AuthLayout>
