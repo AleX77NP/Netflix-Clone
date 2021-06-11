@@ -10,6 +10,10 @@ from pathlib import Path
 from flask_cors import CORS
 from functools import wraps
 import jwt
+from py_zipkin.zipkin import zipkin_span, create_http_headers_for_new_span, ZipkinAttrs, Kind, zipkin_client_span
+from py_zipkin.request_helpers import create_http_headers
+from py_zipkin.encoding import Encoding
+import requests
 
 rest_port = 9004
 
@@ -27,10 +31,12 @@ app = Flask(__name__)
 
 cors = CORS(app, resources={r"*": {"origins": "http://localhost:3000"}})
 
+
 app.secret_key = os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://admin:admin@postgres:5432/payments'
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(base_dir, 'db.sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
@@ -72,7 +78,34 @@ def auth_middleware(func):
 
     return decorated_function
 
+def default_handler(encoded_span):
+    body = encoded_span
 
+    app.logger.debug("body %s", body)
+
+    return requests.post(
+        "http://zipkin-server:9411/api/v2/spans",
+        data=body,
+        headers={'Content-Type': 'application/json'},
+    )
+
+
+@app.before_request
+def log_request_info():
+    app.logger.debug('Headers: %s', request.headers)
+    app.logger.debug('Body: %s', request.get_data())
+
+@zipkin_client_span(service_name='PAYMENT-SERVICE', span_name='get_user_payment')
+def trace_get():
+    print('User payment requested.')
+
+@zipkin_client_span(service_name='PAYMENT-SERVICE', span_name='update_user_payment')
+def trace_update():
+    print('User payment updated.')
+
+@zipkin_client_span(service_name='PAYMENT-SERVICE', span_name='remove_user_payment')
+def trace_remove():
+    print('User payment removed.')
 
 @app.route('/', methods=['GET'])
 def index():
@@ -81,6 +114,16 @@ def index():
 @app.route('/payment/user', methods=['GET'])
 @auth_middleware
 def payment(user):
+    with zipkin_span(
+        service_name='PAYMENT-SERVICE',
+        span_name='get_user_payment',
+        transport_handler=default_handler,
+        port=9004,
+        sample_rate=100,
+        encoding=Encoding.V2_JSON
+    ):
+        trace_get()
+
     print(user)
     user_payment = UserPayment.query.filter_by(user=user).first()
 
@@ -89,6 +132,16 @@ def payment(user):
 @app.route('/payment/change', methods=['PUT'])
 @auth_middleware
 def change(user):
+    with zipkin_span(
+        service_name='PAYMENT-SERVICE',
+        span_name='update_user_payment',
+        transport_handler=default_handler,
+        port=9004,
+        sample_rate=100,
+        encoding=Encoding.V2_JSON
+    ):
+        trace_update()
+
     plan = request.json['plan']
     last_modified = request.json['last_modified']
 
@@ -103,6 +156,16 @@ def change(user):
 @app.route('/payment/remove', methods=['DELETE'])
 @auth_middleware
 def remove(user):
+    with zipkin_span(
+        service_name='PAYMENT-SERVICE',
+        span_name='remove_user_payment',
+        transport_handler=default_handler,
+        port=9004,
+        sample_rate=100,
+        encoding=Encoding.V2_JSON
+    ):
+        trace_remove()
+
     user_payment = UserPayment.query.filter_by(user=user).first()
 
     db.session.delete(user_payment)

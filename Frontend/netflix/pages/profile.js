@@ -212,7 +212,7 @@ const Profile = () => {
                             <p style={{fontWeight: 'bold'}}>{state.authUser?.user.email}</p>
                         </div>
                         <div className={styles.content_part}>
-                            <button className={styles.cancel_btn}>Cancel Membership</button>
+                            <button className={styles.cancel_btn}>Deactivate Account</button>
                             <div style={{display: 'flex', alignItems: 'center'}}>
                                 <img style={{width: '40px'}} src="/images/mastercard.jpg" alt="mcard" />
                                 <span style={{marginLeft: '5px'}}>•••• •••• •••• 1234</span>

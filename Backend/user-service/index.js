@@ -43,6 +43,12 @@ fastify.register(require("fastify-cors"), {
   credentials: true
 });
 
+fastify.register(require('fastify-zipkin'), {
+  serviceName: 'USER-SERVICE',
+  servicePort: PORT,
+  httpReporterUrl: 'http://zipkin-server:9411/api/v2/spans'
+})
+
 fastify.register(require('fastify-cookie'), {
   secret: process.env.COOKIE_SECRET, // for cookies signature
   parseOptions: {}     // options for parsing cookies

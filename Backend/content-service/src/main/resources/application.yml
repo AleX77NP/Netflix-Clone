@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: CONTENT-SERVICE
+  zipkin:
+    base-url: http://zipkin-server:9411/
 
 eureka:
   client:

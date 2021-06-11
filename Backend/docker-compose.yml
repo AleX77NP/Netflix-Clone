@@ -117,6 +117,13 @@ services:
             context: ./user-service
             dockerfile: Dockerfile
         restart: always
+    
+    zipkin:
+        image: openzipkin/zipkin
+        container_name: zipkin-server
+        ports: 
+            - 9411:9411
+        restart: always
 
 volumes: 
     mongodb:

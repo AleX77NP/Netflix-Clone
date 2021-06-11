@@ -17,6 +17,7 @@ flask-cors = "*"
 pika = "*"
 requests = "*"
 pyjwt = "*"
+py-zipkin = "*"
 
 [requires]
 python_version = "3.9"

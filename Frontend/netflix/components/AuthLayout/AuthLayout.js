@@ -24,7 +24,6 @@ const AuthLayout = (props) => {
         const data = await res.json()
         if(!data.user) {
             await router.replace('/landing')
-            toast.dark('An error occurred while fetching user data.')
         } else {
             if(!data.user.confirmed) {
                 await router.replace('/login')
