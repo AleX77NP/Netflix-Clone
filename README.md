@@ -36,5 +36,5 @@ It also uses Rabbitmq for internal communication between User and Payment servic
 5. Run npm install && npm start
 
 # Future improvements
-- I could include some ML to recommend movies and TV shows based on their list and liked videos.
+- I could include some ML to recommend movies and TV shows based on user's list and liked videos.
 - Separate Kids and Adult content.
