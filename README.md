@@ -5,7 +5,7 @@ This is a project that I created for my Bachelor's Thesis. It is related to the 
 # Features
 
 It includes:
-* Login & Registration
+* Login & Registration (JWT Authorization, Password hashing included)
 * Email verification
 * User profile(s) with Payment settings
 * New Arrivals, Netflix Originals and several other categories for movies and TV shows
