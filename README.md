@@ -25,7 +25,7 @@ Backend consists of several services:
 * Service Registry, Cloud Gateway, Hystrix Dashboard (Spring Cloud)
 * Zipkin
 
-Backend runs on Docker-compose setup, with 2 additional databases - MongoDb (User Service) and PostgresSql (Payment service)
+Backend runs on Docker-compose setup, with 2 additional databases - MongoDb (User Service) and PostgresSql (Payment Service)
 It also uses Rabbitmq for internal communication between User and Payment services.
 
 # How to run in
