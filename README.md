@@ -10,7 +10,7 @@ It includes:
 * User profile(s) with Payment settings
 * Account deactivation
 * New Arrivals, Netflix Originals and several other categories for movies and TV shows
-* My List for every user
+* Watchlist for every user
 * Like/dislike option
 * Video (trailer) streaming
 
