@@ -8,6 +8,7 @@ It includes:
 * Login & Registration (JWT Authorization, Password hashing included)
 * Email verification
 * User profile(s) with Payment settings
+* Account deactivation
 * New Arrivals, Netflix Originals and several other categories for movies and TV shows
 * My List for every user
 * Like/dislike option
