@@ -23,6 +23,7 @@ Backend consists of several services:
 * Content Service (Java with external TMDB api)
 * Service Registry, Cloud Gateway, Hystrix Dashboard (Spring Cloud)
 * Zipkin
+
 Backend runs on Docker-compose setup, with 2 additional databases - MongoDb (User Service) and PostgresSql (Payment service)
 It also uses Rabbitmq for internal communication between User and Payment services.
 
