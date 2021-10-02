@@ -28,7 +28,7 @@ Backend consists of several services:
 Backend runs on Docker-compose setup, with 2 additional databases - MongoDb (User Service) and PostgresSql (Payment Service)
 It also uses Rabbitmq for internal communication between User and Payment services.
 
-# How to run in
+# How to run it
 
 1. Clone this repo
 2. cd into Backend folder
