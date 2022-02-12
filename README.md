@@ -2,6 +2,9 @@
 
 This is a project that I created for my Bachelor's Thesis. It is related to the topics we learned during Distributed Systems course, but I also included a lot of things that I learned on my own.
 
+# Application architecture
+![plot](./documentation/netflix-clone.drawio.png)
+
 # Features
 
 It includes:
